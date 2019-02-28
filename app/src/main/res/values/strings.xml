@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">OrganizadorUltradia</string>
+    <string name="Prueba">Prueba</string>
+    <string name="Iniciar">Iniciar</string>
+    <string name="Regis">Registrar actividades</string>
+    <string name="vis">Visualizar horario</string>
+    <string name="Registrar">Registrar</string>
+    <string name="Regresar">Regresar</string>
+    <string name="Duracion">Duracion</string>
+    <string name="IngresarAct">Ingresar Actividad</string>
+    <string name="DES">Descripcion de la actividad</string>
+</resources>
