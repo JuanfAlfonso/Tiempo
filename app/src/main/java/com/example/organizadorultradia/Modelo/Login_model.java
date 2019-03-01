@@ -1,23 +1,22 @@
 package com.example.organizadorultradia.Modelo;
 
 import com.example.organizadorultradia.Interface.Interface;
-import com.example.organizadorultradia.Presentador.presentador;
 
 public class Login_model implements Interface.Model {
-    private Interface.Presenter Presenter;
+    private Interface.Presenter presenter;
 
     public Login_model(Interface.Presenter presenter) {
-        this.Presenter=presenter;
+        this.presenter=presenter;
     }
 
 
     @Override
-    public void RegistrarLogin(String Email, int Pass) {
+    public void RegistrarLogin(String Email, String Pass) {
 
     }
 
     @Override
-    public void RegistrarActividad(String actividad, int duracion, String descripcion) {
-
+    public void RegistrarActividad(String actividad, String duracion, String descripcion) {
+      // a la espera del negro
     }
 }

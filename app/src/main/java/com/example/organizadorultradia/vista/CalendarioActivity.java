@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.organizadorultradia.Interface.Interface;
 import com.example.organizadorultradia.R;
 import com.example.organizadorultradia.vista.Activity_duo;
 
 public class CalendarioActivity extends AppCompatActivity {
+    private Interface.View view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

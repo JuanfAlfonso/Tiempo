@@ -6,13 +6,13 @@ public interface Interface {
     }
 
     interface Presenter{
-        void RegistrarLogin(String Email, int Pass);
-        void RegistrarActividad(String actividad,int duracion,String descripcion);
+        void RegistrarLogin(String Email, String Pass);
+        void RegistrarActividad(String actividad,String duracion,String descripcion);
     }
 
     interface Model{
-      void RegistrarLogin(String Email, int Pass);
-      void RegistrarActividad(String actividad,int duracion,String descripcion);
+      void RegistrarLogin(String Email, String Pass);
+      void RegistrarActividad(String actividad,String duracion,String descripcion);
     }
 
 

@@ -6,30 +6,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
-import com.example.organizadorultradia.Presentador.presentador;
+import com.example.organizadorultradia.Interface.Interface;
+import com.example.organizadorultradia.Presenter.Presentador;
 import com.example.organizadorultradia.R;
 
 public class RegistraractActivity extends AppCompatActivity {
-    private EditText IGA;
+    private EditText ingresarAct;
     private EditText Dur;
     private EditText desc;
+    private Interface.Presenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registraract);
-
-        IGA =(EditText)findViewById(R.id.ingA);
+        ingresarAct =(EditText)findViewById(R.id.ingA);
         Dur =(EditText)findViewById(R.id.Duracion);
         desc =(EditText)findViewById(R.id.Descripcion);
+       presenter = new Presentador((Interface.View) this);//Enviarle la vista al presentador
     }
+    public void RegistrarAct (View view){
+        //capta los datos
+        presenter.RegistrarActividad(ingresarAct.getText().toString(),Dur.getText().toString(),desc.getText().toString());
+    }
+
     //metodo para que al oprimir el boton 'regresar', este vuelva a la activity anterior
     public void Previous(View view){
         Intent previous = new Intent(this, Activity_duo.class);
         startActivity(previous);
     }
-    public void enviarP (View view){
-        Intent i = new Intent(this, presentador.class);
-         i.putExtra("actividad",IGA.getText().toString());
-         startActivity(i);
-    }
+
+
+
+
+
 }
