@@ -20,6 +20,6 @@ private Interface.Model model;
     @Override
     public void RegistrarActividad(String actividad, String duracion, String descripcion) {
         //capta los datos
-    model.RegistrarActividad(actividad,duracion,descripcion);
+        model.RegistrarActividad(actividad,duracion,descripcion);
     }
 }

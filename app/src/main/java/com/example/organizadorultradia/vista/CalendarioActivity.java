@@ -4,20 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CalendarView;
+import android.widget.Toast;
 
 import com.example.organizadorultradia.Interface.Interface;
 import com.example.organizadorultradia.R;
 import com.example.organizadorultradia.vista.Activity_duo;
 
 public class CalendarioActivity extends AppCompatActivity {
-    private Interface.View view;
+
+    CalendarView calendario;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendario);
-    }
-    public void Previous(View view){
-        Intent previous = new Intent(this, Activity_duo.class);
-        startActivity(previous);
+        calendario=(CalendarView)findViewById(R.id.calendar);
+        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                Toast.makeText(getApplicationContext(),dayOfMonth+"/"+month+"/"+year, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
