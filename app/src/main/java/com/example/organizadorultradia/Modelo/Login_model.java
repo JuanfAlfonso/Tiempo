@@ -12,7 +12,7 @@ public class Login_model implements Interface.Model {
 
     @Override
     public void RegistrarLogin(String Email, String Pass) {
-        int x=0;
+
     }
 
     @Override
