@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         presenter.setView(this);
         email = (EditText) findViewById(R.id.Email);
         password = (EditText) findViewById(R.id.Pass);
-        loginButton = (Button) this.findViewById(R.id.inicio_registro);
+        loginButton = (Button) this.findViewById(R.id.loginButtom);
         setUpListeners();
     }
 
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void sucessfulSignIn(String m, String p) {
-        System.out.println("emai: " + m + " password: " + p+" desde la vista");
+        System.out.println("email: " + m + " password: " + p+" desde la vista");
     }
 
     //public void registrarUsuario(View view) {

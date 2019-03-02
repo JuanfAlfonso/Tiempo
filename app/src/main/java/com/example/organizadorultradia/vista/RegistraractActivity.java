@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.organizadorultradia.Interface.LoginContract;
 import com.example.organizadorultradia.Presenter.Presentador;
 import com.example.organizadorultradia.R;
 
@@ -13,7 +14,7 @@ public class RegistraractActivity extends AppCompatActivity {
     private EditText ingresarAct;
     private EditText Dur;
     private EditText desc;
-    private Presentador presenter;
+    private LoginContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +26,7 @@ public class RegistraractActivity extends AppCompatActivity {
 
     }
 
-    public void RegistrarAct(View view) {
-        //capta los datos
-        //presenter.RegistrarActividad(ingresarAct.getText().toString(),Dur.getText().toString(),desc.getText().toString());
-    }
+
 
     //metodo para que al oprimir el boton 'regresar', este vuelva a la activity anterior
     public void Previous(View view) {
