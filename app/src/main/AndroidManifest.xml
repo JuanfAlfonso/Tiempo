@@ -23,5 +23,6 @@
         <activity android:name=".vista.CalendarioActivity"
             tools:ignore="DuplicateActivity" />
 
+
     </application>
 </manifest>
