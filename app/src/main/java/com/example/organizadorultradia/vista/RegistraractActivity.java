@@ -22,7 +22,7 @@ public class RegistraractActivity extends AppCompatActivity {
         ingresarAct =(EditText)findViewById(R.id.ingA);
         Dur =(EditText)findViewById(R.id.Duracion);
         desc =(EditText)findViewById(R.id.Descripcion);
-       presenter = new Presentador((Interface.View) this);//Enviarle la vista al presentador
+
     }
     public void RegistrarAct (View view){
         //capta los datos
