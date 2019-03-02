@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Email" />
 
     <Button
-        android:id="@+id/InicioRegistro"
+        android:id="@+id/inicio_registro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -41,7 +41,6 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:onClick="registrarUsuario"
         android:text="@string/Iniciar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -56,7 +55,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="68dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InicioRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/inicio_registro"
         app:srcCompat="@drawable/facebooklogo" />
 
     <ImageView
@@ -67,7 +66,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InicioRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/inicio_registro"
         app:srcCompat="@drawable/google" />
 
     <Button
