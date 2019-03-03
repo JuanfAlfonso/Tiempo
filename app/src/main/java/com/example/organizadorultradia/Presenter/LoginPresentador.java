@@ -5,11 +5,11 @@ import com.example.organizadorultradia.Interface.LoginContract;
 import com.example.organizadorultradia.Modelo.Login_model;
 
 
-public class Presentador implements LoginContract.Presenter {
+public class LoginPresentador implements LoginContract.Presenter {
     private LoginContract.View view;
     private Login_model model;
 
-    public Presentador() {
+    public LoginPresentador() {
         model = new Login_model(this);
     }
 
@@ -20,16 +20,13 @@ public class Presentador implements LoginContract.Presenter {
 
     @Override
     public void registrarLogin(String email, String password) {
-        showInView(email, password);
+        model.RegistrarLogin(email, password);// se envian los datos al modelo para validarlos en la base de datos
+        //showInView(email, password);//comprobacion de captrua de datos y mvp
     }
 
-    @Override
-    public void registrarActividad(String actividad, String duracion, String descripcion) {
-        model.RegistrarActividad(actividad, duracion, descripcion);
-    }
 
-    private void showInView(String m, String p){
-        view.sucessfulSignIn(m, p);
-    }
+    //private void showInView(String m, String p) {
+    //    view.sucessfulSignIn(m, p);
+    //}
 
 }

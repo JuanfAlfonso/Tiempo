@@ -4,28 +4,53 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.organizadorultradia.Interface.LoginContract;
-import com.example.organizadorultradia.Presenter.Presentador;
+import com.example.organizadorultradia.Interface.RegistrarActividadContract;
+import com.example.organizadorultradia.Presenter.LoginPresentador;
+import com.example.organizadorultradia.Presenter.RegistrarActPresentador;
 import com.example.organizadorultradia.R;
 
-public class RegistraractActivity extends AppCompatActivity {
+public class RegistraractActivity extends AppCompatActivity implements RegistrarActividadContract.View{
     private EditText ingresarAct;
-    private EditText Dur;
-    private EditText desc;
-    private LoginContract.Presenter presenter;
+    private EditText duracion;
+    private EditText descripcion;
+    private Button registrarAct;
+    private RegistrarActividadContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registraract);
+
+         setUpActivity();
+    }
+
+    private void setUpActivity() {
+        presenter = new RegistrarActPresentador();
+        presenter.setView(this);
         ingresarAct = (EditText) findViewById(R.id.ingA);
-        Dur = (EditText) findViewById(R.id.Duracion);
-        desc = (EditText) findViewById(R.id.Descripcion);
+        duracion = (EditText) findViewById(R.id.Duracion);
+        descripcion = (EditText) findViewById(R.id.Descripcion);
+        registrarAct = (Button) findViewById(R.id.registrarActBtn);
+        SetUpLinsteners();
 
     }
 
+    private void SetUpLinsteners() {
+        registrarAct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               String ing= ingresarAct.getText().toString();
+                String dur=duracion.getText().toString();
+                String des =descripcion.getText().toString();
+                if (!ing.toString().equals("") && !dur.toString().equals("") && !des.toString().equals("")){
+                    presenter.registrarActividad(ing,dur,des);
+                }
+            }
+        });
+    }
 
 
     //metodo para que al oprimir el boton 'regresar', este vuelva a la activity anterior
@@ -34,5 +59,8 @@ public class RegistraractActivity extends AppCompatActivity {
         startActivity(previous);
     }
 
-
+    @Override
+    public void sucessfulAct(String actividad, String duracion, String descripcion) {
+        System.out.println("/ACTIVIDAD:"+actividad+"/DUARACION"+duracion+"/DESCRIPCION"+descripcion);
+    }
 }

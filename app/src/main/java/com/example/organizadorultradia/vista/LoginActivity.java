@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.organizadorultradia.Interface.LoginContract;
-import com.example.organizadorultradia.Presenter.Presentador;
+import com.example.organizadorultradia.Presenter.LoginPresentador;
 import com.example.organizadorultradia.R;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
@@ -16,23 +16,20 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private EditText password;
     private Button loginButton;
     private LoginContract.Presenter presenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setUpActivity();
     }
-
     private void setUpActivity() {
-        presenter = new Presentador();
+        presenter = new LoginPresentador();
         presenter.setView(this);
         email = (EditText) findViewById(R.id.Email);
         password = (EditText) findViewById(R.id.Pass);
         loginButton = (Button) this.findViewById(R.id.loginButtom);
         setUpListeners();
     }
-
     private void setUpListeners() {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,17 +41,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             }
         });
     }
-
     public void Prueba(View view) {
         Intent next = new Intent(this, Activity_duo.class);
         startActivity(next);
     }
-
     @Override
     public void sucessfulSignIn(String m, String p) {
         System.out.println("email: " + m + " password: " + p+" desde la vista");
     }
-
     //public void registrarUsuario(View view) {
     //    String email = email.getText().toString();
     //    String pass = password.getText().toString();
