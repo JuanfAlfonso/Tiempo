@@ -23,9 +23,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setUpActivity();
+        getApplicationContext();
     }
     private void setUpActivity() {
-        presenter = new LoginPresentador();
+        presenter = new LoginPresentador(getApplicationContext());
         presenter.setView(this);
         email = (EditText) findViewById(R.id.Email);
         password = (EditText) findViewById(R.id.Pass);
