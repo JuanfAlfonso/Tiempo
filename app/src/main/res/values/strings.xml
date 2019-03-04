@@ -9,4 +9,8 @@
     <string name="Duracion">Duracion</string>
     <string name="IngresarAct">Ingresar Actividad</string>
     <string name="DES">Descripcion de la actividad</string>
+    <string name="Email">Correo</string>
+    <string name="Password">Contraseña</string>
+    <string name="PasswordRepit">Confirmar contraseña</string>
+    <string name="Ingresar">Ingresar</string>
 </resources>

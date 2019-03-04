@@ -7,8 +7,7 @@ public class Login_model {
     public Login_model(LoginPresentador presenter) {
         this.presenter = presenter;
     }
-    public void RegistrarLogin(String Email, String Pass) {
+    public void validarLogin(String Email, String Pass) {
      // a la espera de envio de datos
     }
-
 }

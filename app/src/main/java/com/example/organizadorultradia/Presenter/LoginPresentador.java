@@ -19,8 +19,8 @@ public class LoginPresentador implements LoginContract.Presenter {
     }
 
     @Override
-    public void registrarLogin(String email, String password) {
-        model.RegistrarLogin(email, password);// se envian los datos al modelo para validarlos en la base de datos
+    public void validarLogin(String email, String password) {
+        model.validarLogin(email, password);// se envian los datos al modelo para validarlos en la base de datos
         //showInView(email, password);//comprobacion de captrua de datos y mvp
     }
 

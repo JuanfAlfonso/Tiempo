@@ -35,7 +35,6 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
         descripcion = (EditText) findViewById(R.id.Descripcion);
         registrarAct = (Button) findViewById(R.id.registrarActBtn);
         SetUpLinsteners();
-
     }
 
     private void SetUpLinsteners() {
@@ -58,7 +57,7 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
         Intent previous = new Intent(this, Activity_duo.class);
         startActivity(previous);
     }
-
+//metodo para comprobar que si se trasnfieren los datos
     @Override
     public void sucessfulAct(String actividad, String duracion, String descripcion) {
         System.out.println("/ACTIVIDAD:"+actividad+"/DUARACION"+duracion+"/DESCRIPCION"+descripcion);

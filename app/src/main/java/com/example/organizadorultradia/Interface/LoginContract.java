@@ -7,7 +7,7 @@ public interface LoginContract {
 
     interface Presenter{
         void setView(LoginContract.View view);
-        void registrarLogin(String Email, String Pass);
+        void validarLogin(String Email, String Pass);
     }
 
    //interface Model{
