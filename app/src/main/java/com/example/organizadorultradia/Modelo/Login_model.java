@@ -2,6 +2,7 @@ package com.example.organizadorultradia.Modelo;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,6 +31,9 @@ public class Login_model implements Response.Listener<JSONObject>, Response.Erro
         request = Volley.newRequestQueue(getAplicationContext);
     }
     private void WEBservice(){
+        progreso=new ProgressDialog(getAplicationContext);
+        progreso.setMessage("cargando...");
+        progreso.show();
         String url="";
         url.replace(" ", "%20");
         stringRequest= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
@@ -37,12 +41,15 @@ public class Login_model implements Response.Listener<JSONObject>, Response.Erro
     }
     @Override
     public void onErrorResponse(VolleyError error) {
-
+        progreso.hide();
+        Toast.makeText(getAplicationContext,"no se pudo registrar"+error.toString(),Toast.LENGTH_SHORT).show();
+        Log.i("ERROR",error.toString());
     }
 
     @Override
     public void onResponse(JSONObject response) {
         Toast.makeText(getAplicationContext,"se ha registrado exitosamente",Toast.LENGTH_SHORT).show();
+        progreso.hide();
     }
     public void validarLogin(String Email, String Pass) {
      // a la espera de envio de datos
