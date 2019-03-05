@@ -25,6 +25,7 @@ public class Login_model implements Response.Listener<JSONObject>, Response.Erro
     RequestQueue request;
     JsonObjectRequest stringRequest;
     Context getAplicationContext;
+    String email, contraseña;
 
     public Login_model(LoginPresentador presenter, Context contexto) {
         this.presenter = presenter;
@@ -52,6 +53,7 @@ public class Login_model implements Response.Listener<JSONObject>, Response.Erro
         progreso.hide();
     }
     public void validarLogin(String Email, String Pass) {
-     // a la espera de envio de datos
+        email=Email;
+        contraseña=Pass;
     }
 }
