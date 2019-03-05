@@ -16,14 +16,14 @@ import com.example.organizadorultradia.Modelo.Login_model;
 import org.json.JSONObject;
 
 
-public class LoginPresentador implements LoginContract.Presenter,Response.Listener<JSONObject>, Response.ErrorListener {
+public class LoginPresentador implements LoginContract.Presenter {
     private LoginContract.View view;
     private Login_model model;
-    Context aaaaaa;
+    Context contexto;
 
     public LoginPresentador(Context applicationContext) {
-        model = new Login_model(this, aaaaaa);
-        aaaaaa = applicationContext;
+        contexto=applicationContext;
+        model = new Login_model(this, contexto);
     }
 
     @Override
@@ -36,17 +36,6 @@ public class LoginPresentador implements LoginContract.Presenter,Response.Listen
         model.validarLogin(email, password);// se envian los datos al modelo para validarlos en la base de datos
         //showInView(email, password);//comprobacion de captrua de datos y mvp
     }
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-
-    }
-
 
     //private void showInView(String m, String p) {
     //    view.sucessfulSignIn(m, p);
