@@ -41,7 +41,7 @@ public class Login_model {
         params = new RequestParams();
         client = new AsyncHttpClient();
         String json= gson.toJson(usuario);
-         params.put("usuario",usuario);
+         params.put("usuario",json);
         RequestHandle post = client.post(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
