@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.organizadorultradia.Interface.RegistrarUsuarioContract;
-import com.example.organizadorultradia.Presenter.UsuarioRegistrarPresentador;
+import com.example.organizadorultradia.Presenter.RegistrarPresentador;
 import com.example.organizadorultradia.R;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -29,7 +29,7 @@ public class Activity_UsuarioRegistrar extends AppCompatActivity implements Regi
     }
 
     private void setUpActivity() {
-        presentador = new UsuarioRegistrarPresentador();
+        presentador = new RegistrarPresentador(getApplicationContext());
         presentador.setView(this);
         email =  findViewById(R.id.Email);
         password = findViewById(R.id.Pass);
