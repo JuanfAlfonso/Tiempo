@@ -1,57 +1,64 @@
 package com.example.organizadorultradia.Modelo;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.organizadorultradia.Presenter.LoginPresentador;
+import com.example.organizadorultradia.clases.Usuario;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestHandle;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONObject;
 
-public class Login_model implements Response.Listener<JSONObject>, Response.ErrorListener{
-    private LoginPresentador presenter;
-    ProgressDialog progreso;
-    RequestQueue request;
-    JsonObjectRequest stringRequest;
+import cz.msebera.android.httpclient.Header;
+
+public class Login_model {
     Context getAplicationContext;
+    AsyncHttpClient client;
+    RequestParams params;
+    String url = "http://192.168.137.1:24389/PruebaAndroid/Registrar";
+    private LoginPresentador presenter;
+    private String email;
+    private String pass;
 
-    public Login_model(LoginPresentador presenter, Context contexto) {
+    public Login_model(LoginPresentador presenter, Context getAplicationContext) {
         this.presenter = presenter;
-        request = Volley.newRequestQueue(getAplicationContext);
-    }
-    private void WEBservice(){
-        progreso=new ProgressDialog(getAplicationContext);
-        progreso.setMessage("cargando...");
-        progreso.show();
-        String url="";
-        url.replace(" ", "%20");
-        stringRequest= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
-        request.add(stringRequest);
-    }
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        progreso.hide();
-        Toast.makeText(getAplicationContext,"no se pudo registrar"+error.toString(),Toast.LENGTH_SHORT).show();
-        Log.i("ERROR",error.toString());
+        this.getAplicationContext = getAplicationContext;
     }
 
-    @Override
-    public void onResponse(JSONObject response) {
-        Toast.makeText(getAplicationContext,"se ha registrado exitosamente",Toast.LENGTH_SHORT).show();
-        progreso.hide();
-    }
-    public void validarLogin(String Email, String Pass) {
-     // a la espera de envio de datos
+    public void validarLogin(Usuario usuario) {
+       /* email = Email;
+        pass = Pass;
+        params = new RequestParams();
+        //si estan los datos
+        params.put("email", email);
+        params.put("password", pass);
+        */
+        Gson gson = new Gson();
+        params = new RequestParams();
+        client = new AsyncHttpClient();
+        String json= gson.toJson(usuario);
+         params.put("usuario",usuario);
+        RequestHandle post = client.post(url, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                Toast.makeText(getAplicationContext, "Login succes" + response, Toast.LENGTH_SHORT).show();
+                System.out.println("Login succes" + response);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                Toast.makeText(getAplicationContext, "Ocurrio un error" + throwable, Toast.LENGTH_SHORT).show();
+                System.out.println("Ocurrio un error" + throwable);
+            }
+        });
+
+
+        //System.out.println(email + ":     PERR*    :" + pass + ":   JuanFelipe");
     }
 }

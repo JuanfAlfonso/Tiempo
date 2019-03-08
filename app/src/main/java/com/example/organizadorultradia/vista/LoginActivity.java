@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.example.organizadorultradia.Interface.LoginContract;
 import com.example.organizadorultradia.Presenter.LoginPresentador;
 import com.example.organizadorultradia.R;
+import com.example.organizadorultradia.clases.Usuario;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private EditText email;
@@ -23,50 +24,50 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setUpActivity();
-        getApplicationContext();
+        //getApplicationContext();
     }
+
     private void setUpActivity() {
         presenter = new LoginPresentador(getApplicationContext());
         presenter.setView(this);
-        email = (EditText) findViewById(R.id.Email);
-        password = (EditText) findViewById(R.id.Pass);
-        loginButton = (Button) this.findViewById(R.id.loginButtom);
-        registrar =(Button) this.findViewById(R.id.registrarUsuario);
+        email =  findViewById(R.id.Email);
+        password =  findViewById(R.id.Pass);
+        loginButton =  this.findViewById(R.id.loginButtom);
+        registrar =  this.findViewById(R.id.registrarUsuario);
+
         setUpListeners();
     }
+
     private void setUpListeners() {
         loginButton.setOnClickListener(
                 new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String textEmail = email.getText().toString();
-                String textPassword = password.getText().toString();
-                if (!textEmail.equals("") && !textPassword.equals(""))
-                    presenter.validarLogin(textEmail, textPassword);
-            }
-        });
+                    @Override
+                    public void onClick(View v) {
+
+                        String textEmail = email.getText().toString();
+                        String textPassword = password.getText().toString();
+                        if (!textEmail.equals("") && !textPassword.equals(""))
+
+                            presenter.validarLogin(textEmail, textPassword);
+                    }
+                });
 
     }
-    public void registrar(View view){
+
+    public void registrar(View view) {
         Intent next = new Intent(this, Activity_UsuarioRegistrar.class);
         startActivity(next);
     }
+
     public void Prueba(View view) {
         Intent next = new Intent(this, Activity_duo.class);
         startActivity(next);
     }
+
     @Override
     public void sucessfulSignIn(String m, String p) {
-        System.out.println("email: " + m + " password: " + p+" desde la vista");
+        System.out.println("email: " + m + " password: " + p + " desde la vista");
     }
-    //public void registrarUsuario(View view) {
-    //    String email = email.getText().toString();
-    //    String pass = password.getText().toString();
-    //    if (email.equals("") && pass.equals("")) {
-    //        Toast.makeText(this, "Campo vacio", Toast.LENGTH_LONG).show();
-    //    } else{
 
-    //    }
-    //}
 
 }

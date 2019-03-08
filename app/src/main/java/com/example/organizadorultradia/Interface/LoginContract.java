@@ -10,10 +10,4 @@ public interface LoginContract {
         void validarLogin(String Email, String Pass);
     }
 
-   //interface Model{
-   //  void RegistrarLogin(String Email, String Pass);
-   //
-   //}
-
-
 }
