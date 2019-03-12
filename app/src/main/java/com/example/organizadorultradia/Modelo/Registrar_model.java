@@ -15,7 +15,7 @@ public class Registrar_model {
     Context getAplicationContext;
     AsyncHttpClient client;
     RequestParams params;
-    String url = "http://192.168.0.24:24389/PruebaAndroid/Registrar";
+    String url = "http://172.25.12.228:8080/PruebaAndroid/Registrar";
     private RegistrarPresentador presenter;
     private String email;
     private String pass;
@@ -36,12 +36,11 @@ public class Registrar_model {
                 super.onSuccess(statusCode, headers, response);
                 Toast.makeText(getAplicationContext, "Usuario registrado" + response, Toast.LENGTH_SHORT).show();
                 System.out.println("registro correcto");
-
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
-                Toast.makeText(getAplicationContext, "Ya existe" + throwable, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getAplicationContext, "No se recibe respuesta" + throwable, Toast.LENGTH_SHORT).show();
                 System.out.println("registro incorrecto");
             }
         });

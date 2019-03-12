@@ -20,14 +20,12 @@ public class Activity_UsuarioRegistrar extends AppCompatActivity implements Regi
     private EditText passwordConfi;
     private Button registrar;
     private RegistrarUsuarioContract.Presenter presentador;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__usuario_registrar);
         setUpActivity();
     }
-
     private void setUpActivity() {
         presentador = new RegistrarPresentador(getApplicationContext());
         presentador.setView(this);
@@ -37,23 +35,15 @@ public class Activity_UsuarioRegistrar extends AppCompatActivity implements Regi
         registrar =  this.findViewById(R.id.registrarUsuario);
         setUpListeners();
     }
-
     private void setUpListeners() {
-
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String em = email.getText().toString();
                 String pas = password.getText().toString();
                 String pass2 = passwordConfi.getText().toString();
-                if (pas.equals(pass2)) {
-                    presentador.registrarLogin(em, pas);
-                } else {
-                    Crouton.makeText((Activity) getApplicationContext(), "Las contraseñas no coinciden", Style.ALERT);//no sirve
-                    //hacer un cuadro de dialogo
-                }
+                presentador.registrarLogin(em, pas);
             }
         });
     }
-
 }
