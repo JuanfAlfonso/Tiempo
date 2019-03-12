@@ -2,11 +2,9 @@ package com.example.organizadorultradia.Presenter;
 
 import android.content.Context;
 
-
 import com.example.organizadorultradia.Interface.RegistrarUsuarioContract;
 import com.example.organizadorultradia.Modelo.Registrar_model;
 import com.example.organizadorultradia.clases.Usuario;
-import com.example.organizadorultradia.vista.Activity_UsuarioRegistrar;
 
 public class RegistrarPresentador implements RegistrarUsuarioContract.Presenter {
     Context context;

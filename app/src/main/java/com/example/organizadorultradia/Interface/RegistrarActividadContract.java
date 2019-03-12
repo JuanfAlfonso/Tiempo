@@ -6,6 +6,6 @@ public interface RegistrarActividadContract {
     }
     interface Presenter{
         void registrarActividad(String actividad,String duracion,String descripcion);
-        void setView(RegistrarActividadContract.View view);
+        //void setView(RegistrarActividadContract.View view);
     }
 }
