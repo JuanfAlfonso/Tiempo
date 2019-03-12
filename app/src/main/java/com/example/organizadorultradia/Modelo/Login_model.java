@@ -19,7 +19,7 @@ public class Login_model {
     Context getAplicationContext;
     AsyncHttpClient client;
     RequestParams params;
-    String url = "http://192.168.0.24:24389/PruebaAndroid/Registrar";
+    String url = "http://192.168.111.1:24389/PruebaAndroid/Registrar";
     private LoginPresentador presenter;
     private String email;
     private String pass;
