@@ -36,12 +36,13 @@ public class RegistrarActModel {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
-                Toast.makeText(context, "Usuario registrado" + response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Actividad registrada" + response, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
+                Toast.makeText(context, "Error" + throwable, Toast.LENGTH_SHORT).show();
             }
         });
 
