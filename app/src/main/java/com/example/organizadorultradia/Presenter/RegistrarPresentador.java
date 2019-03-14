@@ -16,7 +16,6 @@ public class RegistrarPresentador implements RegistrarUsuarioContract.Presenter 
 
     }
 
-
     @Override
     public void setView(RegistrarUsuarioContract.view view) {
 

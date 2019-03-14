@@ -1,5 +1,6 @@
 package com.example.organizadorultradia.vista;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,9 +25,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setUpActivity();
-        //getApplicationContext();
     }
-
     private void setUpActivity() {
         presenter = new LoginPresentador(getApplicationContext());
        // presenter.setView(this);
@@ -46,9 +45,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
                         String textEmail = email.getText().toString();
                         String textPassword = password.getText().toString();
-                        if (!textEmail.equals("") && !textPassword.equals(""))
-
+                        if (!textEmail.equals(null) && !textPassword.equals(null)){
                             presenter.validarLogin(textEmail, textPassword);
+}
+
                     }
                 });
 
@@ -63,11 +63,5 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         Intent next = new Intent(this, Activity_duo.class);
         startActivity(next);
     }
-
-    @Override
-    public void sucessfulSignIn(String m, String p) {
-        System.out.println("email: " + m + " password: " + p + " desde la vista");
-    }
-
 
 }

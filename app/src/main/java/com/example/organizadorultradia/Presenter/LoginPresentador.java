@@ -10,15 +10,13 @@ import com.example.organizadorultradia.clases.Usuario;
 
 public class LoginPresentador implements LoginContract.Presenter {
     Context contexto;
-    //private LoginContract.View view;
+    private LoginContract.View view;
     private Login_model model;
 
     public LoginPresentador(Context applicationContext) {
         this.contexto = applicationContext;
         model = new Login_model(this, applicationContext);
     }
-
-
 
     @Override
     public void validarLogin(String email,String password) {
