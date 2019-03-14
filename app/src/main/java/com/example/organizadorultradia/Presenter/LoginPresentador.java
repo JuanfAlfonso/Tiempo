@@ -22,11 +22,6 @@ public class LoginPresentador implements LoginContract.Presenter {
     public void validarLogin(String email,String password) {
         Usuario usuario = new Usuario(email,password);
         model.validarLogin(usuario);// se envian los datos al modelo para validarlos en la base de datos
-        //showInView(email, password);//comprobacion de captrua de datos y mvp
+
     }
-
-    //private void showInView(String m, String p) {\
-    //    view.sucessfulSignIn(m, p);
-    //}
-
 }

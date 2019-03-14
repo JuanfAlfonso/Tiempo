@@ -22,14 +22,13 @@ public class Login_model extends AppCompatActivity {
     Context getAplicationContext;
     AsyncHttpClient client;
     RequestParams params;
-    String url = "http://192.168.0.25:10567/Pruebaoficial/Login";
+    String url = "http://172.25.15.46:8080/selfplan/ServletUser";
     private LoginPresentador presenter;
 
     public Login_model(LoginPresentador presenter, Context getAplicationContext) {
         this.presenter = presenter;
         this.getAplicationContext = getAplicationContext;
     }
-
     public void validarLogin(Usuario usuario) {
         final Gson gson = new Gson();
         params = new RequestParams();
