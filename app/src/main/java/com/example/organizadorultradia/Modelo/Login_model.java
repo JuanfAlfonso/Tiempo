@@ -22,7 +22,7 @@ public class Login_model extends AppCompatActivity {
     Context getAplicationContext;
     AsyncHttpClient client;
     RequestParams params;
-    String url = "http://172.25.15.46:8080/selfplan/ServletUser";
+    String url = "http://192.168.0.24:10567/Pruebaoficial/Login";
     private LoginPresentador presenter;
 
     public Login_model(LoginPresentador presenter, Context getAplicationContext) {
@@ -60,8 +60,8 @@ public class Login_model extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
-                Toast.makeText(getAplicationContext, "Ocurrio un error" + throwable, Toast.LENGTH_SHORT).show();
-                System.out.println("Ocurrio un error" + throwable);
+                Toast.makeText(getAplicationContext, "No hay respuesta del servidor" + throwable, Toast.LENGTH_SHORT).show();
+
             }
 
         });

@@ -20,7 +20,7 @@ public class Registrar_model {
     Context getAplicationContext;
     AsyncHttpClient client;
     RequestParams params;
-    String url = "http://172.25.7.51:10567/Pruebaoficial/Registrar";
+    String url = "http://192.168.0.24/:10567/Pruebaoficial/Actividades";
     private RegistrarPresentador presenter;
     private String email;
     private String pass;
@@ -46,8 +46,7 @@ public class Registrar_model {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
-                Toast.makeText(getAplicationContext, "No se recibe respuesta" + throwable, Toast.LENGTH_SHORT).show();
-                System.out.println("registro incorrecto");
+                Toast.makeText(getAplicationContext, "No hay respuesta del servidor" + throwable, Toast.LENGTH_SHORT).show();
             }
         });
     }

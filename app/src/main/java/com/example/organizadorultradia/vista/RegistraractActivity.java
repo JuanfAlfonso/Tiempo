@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.organizadorultradia.Interface.RegistrarActividadContract;
 import com.example.organizadorultradia.Presenter.RegistrarActPresentador;
@@ -28,7 +29,6 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
 
     private void setUpActivity() {
         presenter = new RegistrarActPresentador(getApplicationContext());
-       // presenter.setView(this);
         ingresarAct = findViewById(R.id.ingA);
         duracion =  findViewById(R.id.Duracion);
         descripcion =  findViewById(R.id.Descripcion);
@@ -44,22 +44,25 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
                 String dur = duracion.getText().toString();
                 String des = descripcion.getText().toString();
                 if (!ing.equals("") && !dur.equals("") && !des.equals("")) {
-                    presenter.registrarActividad(ing, dur, des);
+                    presenter.registrarActividad(ing,dur,des);
+                    if (presenter.comprobarVacios()==true){
+                        ingresarAct.setText("");
+                        duracion.setText("");
+                        descripcion.setText("");
+                    }
+                }else{
+                    sucessfulAct();// no se si funcione :/
                 }
             }
         });
     }
-
-
     //metodo para que al oprimir el boton 'regresar', este vuelva a la activity anterior
     public void Previous(View view) {
         Intent previous = new Intent(this, Activity_duo.class);
         startActivity(previous);
     }
-
     //metodo para comprobar que si se trasnfieren los datos
-    @Override
-    public void sucessfulAct(String actividad, String duracion, String descripcion) {
-        System.out.println("/ACTIVIDAD:" + actividad + "/DUARACION" + duracion + "/DESCRIPCION" + descripcion);
+    public void sucessfulAct() {
+        Toast.makeText(this,"campo vacio",Toast.LENGTH_LONG).show();// no se si funcione x2 :/
     }
 }
