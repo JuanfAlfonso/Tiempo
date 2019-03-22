@@ -6,5 +6,6 @@ public interface CalendarContract {
     }
     interface presentador{
      public void enviarFecha(int dia);
+
     }
 }
