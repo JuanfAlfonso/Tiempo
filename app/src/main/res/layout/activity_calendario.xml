@@ -21,7 +21,7 @@
             <CalendarView
                 android:id="@+id/calendar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></CalendarView>
+                android:layout_height="307dp"></CalendarView>
         </LinearLayout>
     </ScrollView>
 
