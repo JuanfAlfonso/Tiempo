@@ -3,7 +3,6 @@ package com.example.organizadorultradia.Modelo;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.organizadorultradia.Presenter.CalendarioPresentador;
 import com.example.organizadorultradia.clases.Actividad;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
