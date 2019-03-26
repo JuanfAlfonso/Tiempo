@@ -22,6 +22,13 @@
                 android:id="@+id/calendar"
                 android:layout_width="match_parent"
                 android:layout_height="307dp"></CalendarView>
+
+            <TextView
+                android:id="@+id/Actividades"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="TextView"
+                tools:text="Actividades registradas" />
         </LinearLayout>
     </ScrollView>
 
