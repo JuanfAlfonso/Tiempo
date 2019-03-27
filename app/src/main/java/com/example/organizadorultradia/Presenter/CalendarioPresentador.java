@@ -19,4 +19,7 @@ public class CalendarioPresentador implements CalendarContract.presentador {
         Fecha fecha = new Fecha(dia, mes, anio);
        model.recibirFecha(fecha);
     }
+    public void enviarActividad(String mensaje){
+
+    }
 }

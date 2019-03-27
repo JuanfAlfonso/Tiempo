@@ -49,6 +49,8 @@ public class CalendarioModelo {
                     System.out.println(hola.getActividades());
                     System.out.println(hola.getDuracion());
                     System.out.println(hola.getDescripcion());
+                    String mensaje = hola.getActividades()+" "+hola.getDuracion()+" "+hola.getDescripcion();
+                    presentador.enviarActividad(mensaje);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
