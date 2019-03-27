@@ -16,7 +16,7 @@ public class CalendarioActivity extends AppCompatActivity {
     CalendarView calendario;
     TextView actividad;
     CalendarContract.presentador presentador;
-    CalendarioPresentador pres;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -29,7 +29,9 @@ public class CalendarioActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),dayOfMonth+"/"+month+"/"+year, Toast.LENGTH_LONG).show();
                 presentador= new CalendarioPresentador(getApplicationContext());
                 presentador.enviarFecha(dayOfMonth,month,year);
-                actividad.setText(pres.getMensaje());
+                String mensaje=presentador.getMensaje();
+                actividad.setText(mensaje);
+                System.out.println(mensaje);
             }
         });
     }

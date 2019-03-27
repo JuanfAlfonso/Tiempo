@@ -27,8 +27,7 @@
                 android:id="@+id/Actividades"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="TextView"
-                tools:text="Actividades registradas" />
+                android:text="Actividades registradas" />
         </LinearLayout>
     </ScrollView>
 
