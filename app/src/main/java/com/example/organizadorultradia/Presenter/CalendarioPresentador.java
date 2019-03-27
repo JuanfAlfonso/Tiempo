@@ -8,7 +8,8 @@ import com.example.organizadorultradia.clases.Fecha;
 
 public class CalendarioPresentador implements CalendarContract.presentador {
     Context getContext;
-    CalendarioModelo model ;
+    CalendarioModelo model;
+    String mensaje;
     public CalendarioPresentador(Context getContext){
         this.getContext=getContext;
         model = new CalendarioModelo(this,getContext);
@@ -20,6 +21,9 @@ public class CalendarioPresentador implements CalendarContract.presentador {
        model.recibirFecha(fecha);
     }
     public void enviarActividad(String mensaje){
-
+        this.mensaje=mensaje;
+    }
+    public String getMensaje(){
+        return mensaje;
     }
 }
