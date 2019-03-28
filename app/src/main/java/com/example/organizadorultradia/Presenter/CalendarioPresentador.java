@@ -22,7 +22,9 @@ public class CalendarioPresentador implements CalendarContract.presentador {
     }
     public void enviarActividad(String mensaje){
         this.mensaje=mensaje;
+        System.out.println(mensaje+"imprime");
     }
+
     public String getMensaje(){
         return mensaje;
     }

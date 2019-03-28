@@ -20,7 +20,7 @@ public class Registrar_model {
     Context getAplicationContext;
     AsyncHttpClient client;
     RequestParams params;
-    String url = "http://192.168.0.24/:10567/Pruebaoficial/Actividades";
+    String url = "http://172.25.19.248:10567/Pruebaoficial/Registrar";
     private RegistrarPresentador presenter;
     private String email;
     private String pass;
