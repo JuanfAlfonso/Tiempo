@@ -50,13 +50,14 @@ public class CalendarioModelo {
                     }*/
                     Gson gson2 = new Gson();
                     String json = response.getString("true");
+
                     System.out.println(json+" String");
-
-                    Actividad hola = gson2.fromJson(json,Actividad.class);//no esta asignando los atributos del objeto
-
+                    Actividad hola;
+                    hola = gson2.fromJson(json.toString(),Actividad.class);//no esta asignando los atributos del objeto
+                    System.out.println("gemidos"+hola.getDescripcion());
 
                     System.out.println(hola.getActividades()+"  1");
-                    System.out.println(hola.getDuracion()+"     2");
+                    System.out.println(hola.getDuracion()+"  2");
                     System.out.println(hola.getDescripcion()+"  3");
 
                     String mensaje = hola.getActividades()+" "+hola.getDuracion()+" "+hola.getDescripcion();
