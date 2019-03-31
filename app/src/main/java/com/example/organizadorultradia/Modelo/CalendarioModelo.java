@@ -1,72 +1,87 @@
 package com.example.organizadorultradia.Modelo;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
 import com.example.organizadorultradia.Presenter.CalendarioPresentador;
 import com.example.organizadorultradia.clases.Actividad;
 import com.example.organizadorultradia.clases.Fecha;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import cz.msebera.android.httpclient.Header;
 
 public class CalendarioModelo {
     Context getAplicationContext;
     CalendarioPresentador presentador;
-    private String url = "http://172.25.19.248:10567/Pruebaoficial/Actividades";
+    private String url = "http://192.168.0.25:10567/Pruebaoficial/Actividades";
     AsyncHttpClient client;
     RequestParams params;
+
     public CalendarioModelo(CalendarioPresentador presenter, Context context) {
         this.getAplicationContext = context;
         this.presentador = presenter;
     }
+
+    public char traerComilla() {
+        return '"';
+    }
+
     public void recibirFecha(Fecha fecha) {
         Gson gson = new Gson();
         params = new RequestParams();
         client = new AsyncHttpClient();
         String json = gson.toJson(fecha);
         params.put("date", json);
-        System.out.println(params.toString()+" params");
+        System.out.println(params.toString() + " params");
         client.post(url, params, new JsonHttpResponseHandler() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Toast.makeText(getAplicationContext, "Correcto", Toast.LENGTH_SHORT).show();
                 try {
-                   /* for(int i =0; i<=response.length(); i++){
-                        JSONObject json = response.getJSONObject(i);
-                        System.out.println(i);
-                    }*/
                     Gson gson2 = new Gson();
                     String json = response.getString("true");
 
-                    System.out.println(json+" String");
-                    Actividad hola;
-                    hola = gson2.fromJson(json.toString(),Actividad.class);//no esta asignando los atributos del objeto
-                    System.out.println("gemidos"+hola.getDescripcion());
+                    JsonParser parser = new JsonParser();
+                    JsonArray array = parser.parse(json).getAsJsonArray();
+                    String act="",dur="",des="";
+                    System.out.println(json);
+                    for (JsonElement js:array) {
+                        JsonObject object = js.getAsJsonObject();
+                        System.out.println();
+                        act =object.get("Actividades").getAsString();
+                         dur =object.get("Duracion").getAsString();
+                         des=object.get("Descripcion").getAsString();
 
-                    System.out.println(hola.getActividades()+"  1");
-                    System.out.println(hola.getDuracion()+"  2");
-                    System.out.println(hola.getDescripcion()+"  3");
+                        System.out.println(act+"  "+dur+"  "+des);
+                    }
+                    Actividad hola = new Actividad(act,dur,des);
 
-                    String mensaje = hola.getActividades()+" "+hola.getDuracion()+" "+hola.getDescripcion();
+
+                    String mensaje = "Actividad:"+hola.getActividades() + "  Duracion:" + hola.getDuracion() + "  Descripcion:" + hola.getDescripcion();
 
                     System.out.println(mensaje);
                     presentador.enviarActividad(mensaje);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
                /* try {
                     ArrayList<Actividad> act = new ArrayList();
                    for (int i=0;i<=response.length();i++)
@@ -79,11 +94,13 @@ public class CalendarioModelo {
                     e.printStackTrace();
                 }*/
             }
+
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
                 Toast.makeText(getAplicationContext, " " + throwable, Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }

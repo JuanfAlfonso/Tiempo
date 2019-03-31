@@ -1,10 +1,13 @@
 package com.example.organizadorultradia.Presenter;
 
 import android.content.Context;
+import android.widget.TextView;
 
 import com.example.organizadorultradia.Interface.CalendarContract;
 import com.example.organizadorultradia.Modelo.CalendarioModelo;
 import com.example.organizadorultradia.clases.Fecha;
+
+import org.w3c.dom.Text;
 
 public class CalendarioPresentador implements CalendarContract.presentador {
     Context getContext;
@@ -27,5 +30,9 @@ public class CalendarioPresentador implements CalendarContract.presentador {
 
     public String getMensaje(){
         return mensaje;
+    }
+
+    public void  showActivities(Context context,  TextView tx){
+         tx.setText(mensaje);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.organizadorultradia.Interface;
 
+import android.content.Context;
+
 public interface CalendarContract {
     interface view{
 
