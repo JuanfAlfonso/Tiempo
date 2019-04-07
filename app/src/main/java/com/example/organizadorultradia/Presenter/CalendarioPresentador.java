@@ -22,17 +22,14 @@ public class CalendarioPresentador implements CalendarContract.presentador {
     public void enviarFecha(int dia,int mes,int anio) {
         Fecha fecha = new Fecha(dia, mes, anio);
        model.recibirFecha(fecha);
+       //
+
     }
     public void enviarActividad(String mensaje){
         this.mensaje=mensaje;
-        System.out.println(mensaje+"imprime");
     }
 
     public String getMensaje(){
         return mensaje;
-    }
-
-    public void  showActivities(Context context,  TextView tx){
-         tx.setText(mensaje);
     }
 }

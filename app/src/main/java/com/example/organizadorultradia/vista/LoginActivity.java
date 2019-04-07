@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         password =  findViewById(R.id.Pass);
         loginButton =  this.findViewById(R.id.loginButtom);
         registrar =  this.findViewById(R.id.registrarUsuario);
-
         setUpListeners();
     }
 
@@ -46,9 +45,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
                         String textEmail = email.getText().toString();
                         String textPassword = password.getText().toString();
                         if (!textEmail.equals(null) && !textPassword.equals(null)){
-                            presenter.validarLogin(textEmail, textPassword);
-}
-
+                            presenter.validarLogin(textEmail, textPassword); }
                     }
                 });
 

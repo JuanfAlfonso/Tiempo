@@ -9,6 +9,10 @@ import com.example.organizadorultradia.Presenter.CalendarioPresentador;
 import com.example.organizadorultradia.clases.Actividad;
 import com.example.organizadorultradia.clases.Fecha;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -16,12 +20,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import java.util.LinkedList;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -55,33 +54,30 @@ public class CalendarioModelo {
                 super.onSuccess(statusCode, headers, response);
                 Toast.makeText(getAplicationContext, "Correcto", Toast.LENGTH_SHORT).show();
                 try {
-                    Gson gson2 = new Gson();
                     String json = response.getString("true");
 
                     JsonParser parser = new JsonParser();
                     JsonArray array = parser.parse(json).getAsJsonArray();
-                    String act="",dur="",des="";
+                    String act = "", dur = "", des = "";
                     System.out.println(json);
-                    for (JsonElement js:array) {
+                    LinkedList<Actividad> prueba= new LinkedList();
+
+                    for (JsonElement js : array) {
                         JsonObject object = js.getAsJsonObject();
                         System.out.println();
-                        act =object.get("Actividades").getAsString();
-                         dur =object.get("Duracion").getAsString();
-                         des=object.get("Descripcion").getAsString();
-
-                        System.out.println(act+"  "+dur+"  "+des);
+                        act = object.get("Actividades").getAsString();
+                        dur = object.get("Duracion").getAsString();
+                        des = object.get("Descripcion").getAsString();
+                        Actividad hola = new Actividad(act, dur, des);
+                        prueba.add(hola);
                     }
-                    Actividad hola = new Actividad(act,dur,des);
-
-
-                    String mensaje = "Actividad:"+hola.getActividades() + "  Duracion:" + hola.getDuracion() + "  Descripcion:" + hola.getDescripcion();
-
+                    //Actividad hola = new Actividad(act, dur, des);
+                    String mensaje = "Actividad:" + prueba.get(0).getActividades() +"\n" + "  Duracion:" + prueba.get(0).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(0).getDescripcion();
                     System.out.println(mensaje);
                     presentador.enviarActividad(mensaje);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                /* try {
                     ArrayList<Actividad> act = new ArrayList();
                    for (int i=0;i<=response.length();i++)
