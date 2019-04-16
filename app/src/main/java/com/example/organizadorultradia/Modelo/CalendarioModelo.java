@@ -27,7 +27,7 @@ import cz.msebera.android.httpclient.Header;
 public class CalendarioModelo {
     Context getAplicationContext;
     CalendarioPresentador presentador;
-    private String url = "http://192.168.0.25:10567/Pruebaoficial/Actividades";
+    private String url = "http://ec2-3-86-105-189.compute-1.amazonaws.com:8080/Pruebaoficial/Actividades";
     AsyncHttpClient client;
     RequestParams params;
 

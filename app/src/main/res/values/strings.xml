@@ -13,4 +13,6 @@
     <string name="Password">Contraseña</string>
     <string name="PasswordRepit">Confirmar contraseña</string>
     <string name="Ingresar">Ingresar</string>
+    <string name="formato_fecha">dd/mm/yyyy</string>
+    <string name="formato_hora">hh:mm</string>
 </resources>
