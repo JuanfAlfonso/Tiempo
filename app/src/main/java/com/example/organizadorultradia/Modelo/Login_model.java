@@ -29,6 +29,7 @@ public class Login_model extends AppCompatActivity {
         this.presenter = presenter;
         this.getAplicationContext = getAplicationContext;
     }
+
     public void validarLogin(Usuario usuario) {
         final Gson gson = new Gson();
         params = new RequestParams();
@@ -48,9 +49,9 @@ public class Login_model extends AppCompatActivity {
                         Intent next = new Intent(getAplicationContext, Activity_duo.class);
                         next.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         getAplicationContext.startActivity(next);
-                        Toast.makeText(getAplicationContext, "Bienvenido" + response, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getAplicationContext, "Bienvenido", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getAplicationContext, "Usuario no registrado" + response, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getAplicationContext, "Usuario no registrado", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

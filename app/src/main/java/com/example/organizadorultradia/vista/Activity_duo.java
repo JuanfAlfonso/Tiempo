@@ -13,6 +13,10 @@ public class Activity_duo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_duo);
     }
+    @Override
+    public void onBackPressed (){
+        System.out.print("bloqueado");
+    }
      //metodo para el boton next
     public void nextReg(View view){
         Intent next = new Intent(this, RegistraractActivity.class);
