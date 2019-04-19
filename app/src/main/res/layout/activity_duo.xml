@@ -8,15 +8,17 @@
 
         <Button
             android:id="@+id/btnR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="191dp"
+            android:layout_height="46dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:background="@drawable/obt"
             android:onClick="nextReg"
             android:text="@string/Regis"
+            android:textColor="#ADA7A6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -37,18 +39,21 @@
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="177dp"
+            android:layout_height="46dp"
+            android:textColor="#ADA7A6"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:background="@drawable/obt"
             android:onClick="nexthor"
             android:text="@string/vis"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
 
         <ImageView
             android:id="@+id/imageView2"
@@ -62,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/acrividades2" />
+            app:srcCompat="@drawable/actividades2" />
 
 
 </android.support.constraint.ConstraintLayout>
