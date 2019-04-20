@@ -27,4 +27,9 @@ public class Activity_duo extends AppCompatActivity {
         startActivity(next);
     }
 
+    public void registrarmanual(View view) {
+        Intent next = new Intent(this, Activity_UsuarioRegistrar.class);
+        startActivity(next);
+    }
+
 }

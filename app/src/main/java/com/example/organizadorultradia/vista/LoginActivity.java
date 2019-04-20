@@ -56,9 +56,4 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         startActivity(next);
     }
 
-    public void Prueba(View view) {
-        Intent next = new Intent(this, Activity_duo.class);
-        startActivity(next);
-    }
-
 }
