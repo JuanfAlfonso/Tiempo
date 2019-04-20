@@ -56,6 +56,10 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
             }
         });
     }
+    private void RegistroManual(View view){
+        Intent next = new Intent(this, Activity_manual.class);
+        startActivity(next);
+    }
     //metodo para que al oprimir el boton 'regresar', este vuelva a la activity anterior
     public void Previous(View view) {
         Intent previous = new Intent(this, Activity_duo.class);
