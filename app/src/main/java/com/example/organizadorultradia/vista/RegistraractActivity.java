@@ -18,6 +18,7 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
     private EditText descripcion;
     private Button registrarAct;
     private RegistrarActividadContract.Presenter presenter;
+    public Activity_manual manual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,40 +34,29 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
         duracion =  findViewById(R.id.Duracion);
         descripcion =  findViewById(R.id.Descripcion);
         registrarAct = findViewById(R.id.registrarActBtn);
-        SetUpLinsteners();
+        setUpListener();
     }
 
-    private void SetUpLinsteners() {
+    private void setUpListener() {
         registrarAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String ing = ingresarAct.getText().toString();
-                String dur = duracion.getText().toString();
-                String des = descripcion.getText().toString();
-                if (!ing.equals("") && !dur.equals("") && !des.equals("")) {
-                    presenter.registrarActividad(ing,dur,des);
-                    if (presenter.comprobarVacios()==true){
-                        ingresarAct.setText("");
-                        duracion.setText("");
-                        descripcion.setText("");
-                    }
-                }else{
-                    sucessfulAct();// no se si funcione :/
-                }
+                Intent next = new Intent(RegistraractActivity.this, Activity_manual.class);
+               String Act= ingresarAct.getText().toString();
+               String dur=duracion.getText().toString();
+               String desc =descripcion.getText().toString();
+               next.putExtra("Actividad",Act);
+               next.putExtra("Duracion",dur);
+               next.putExtra("Descripcion",desc);
+
+               startActivity(next);
             }
+
         });
     }
-    private void RegistroManual(View view){
-        Intent next = new Intent(this, Activity_manual.class);
-        startActivity(next);
-    }
-    //metodo para que al oprimir el boton 'regresar', este vuelva a la activity anterior
-    public void Previous(View view) {
-        Intent previous = new Intent(this, Activity_duo.class);
-        startActivity(previous);
-    }
-    //metodo para comprobar que si se trasnfieren los datos
-    public void sucessfulAct() {
-        Toast.makeText(this,"campo vacio",Toast.LENGTH_LONG).show();// no se si funcione x2 :/
+
+    public void RegistroManual(View view){
+      //  Intent next = new Intent(this, Activity_manual.class);
+       // startActivity(next);
     }
 }

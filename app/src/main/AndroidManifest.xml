@@ -12,7 +12,8 @@
         android:label="self Plan"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="HardcodedDebugMode">
         <activity android:name=".vista.Activity_UsuarioRegistrar"></activity>
         <activity android:name=".vista.LoginActivity">
             <intent-filter>
@@ -26,6 +27,6 @@
         <activity
             android:name=".vista.CalendarioActivity"
             tools:ignore="DuplicateActivity" />
+        <activity android:name=".vista.Activity_manual"> </activity>
     </application>
-
 </manifest>

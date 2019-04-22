@@ -41,7 +41,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         String textEmail = email.getText().toString();
                         String textPassword = password.getText().toString();
                         if (!textEmail.equals(null) && !textPassword.equals(null)){
