@@ -23,7 +23,6 @@ public class RegistrarActPresentador implements RegistrarActividadContract.Prese
         //view.sucessfulAct(actividad,duracion,descripcion);
         Actividad actividad1 = new Actividad(actividad,duracion,descripcion);
         model.RegistrarActividad(actividad1);
-
     }
 
     @Override
