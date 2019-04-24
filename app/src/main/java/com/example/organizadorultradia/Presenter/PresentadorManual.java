@@ -16,6 +16,5 @@ public class PresentadorManual {
     public void registrarActividad(String actividad, String duracion, String descripcion) {
         Actividad actividad1 = new Actividad(actividad,duracion,descripcion);
         model.RegistraManual(actividad1);
-        System.out.println("RE HOLA");
     }
 }
