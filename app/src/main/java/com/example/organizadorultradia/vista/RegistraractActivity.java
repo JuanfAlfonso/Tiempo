@@ -2,19 +2,15 @@ package com.example.organizadorultradia.vista;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.constraint.solver.ArrayLinkedVariables;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.organizadorultradia.clases.Informacion;
+
 import com.example.organizadorultradia.Interface.RegistrarActividadContract;
 import com.example.organizadorultradia.Presenter.RegistrarActPresentador;
 import com.example.organizadorultradia.R;
-
-import java.util.ArrayList;
-
 
 public class RegistraractActivity extends AppCompatActivity implements RegistrarActividadContract.View {
     private EditText ingresarAct;
@@ -65,7 +61,8 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
                 String Act= ingresarAct.getText().toString();
                 String dur=duracion.getText().toString();
                 String desc =descripcion.getText().toString();
-                ArrayList<Informacion> lista = new ArrayList<>();
+
+
             }
         });
     }

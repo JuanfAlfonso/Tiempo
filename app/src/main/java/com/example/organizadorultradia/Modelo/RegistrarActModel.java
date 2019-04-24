@@ -5,7 +5,12 @@ import android.widget.Toast;
 
 import com.example.organizadorultradia.Presenter.RegistrarActPresentador;
 import com.example.organizadorultradia.clases.Actividad;
+import com.example.organizadorultradia.clases.Informacion;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -15,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -31,8 +37,7 @@ public class RegistrarActModel {
     }
 
     public void RegistrarActividad(Actividad actividad) {
-        System.out.println("RE HOLA X2"
-        );
+        System.out.println("RE HOLA X2");
         Gson gson = new Gson();
         params = new RequestParams();
         client = new AsyncHttpClient();
@@ -47,6 +52,36 @@ public class RegistrarActModel {
                     if(otraP==1){
                         Toast.makeText(getAplicationContext, "Actividad registrada" + response, Toast.LENGTH_SHORT).show();
                         presenter.comprobar(true);
+
+
+                        //prueba algoritmo!!!!!!!!!!!!!!!!!
+
+                        String json = response.getString("true");//Capta la informacion de json
+
+                        //extrae la infromacion
+                        JsonParser parser = new JsonParser();
+                        JsonArray array = parser.parse(json).getAsJsonArray();
+                        String fecha = "", descri = "",titulo="";
+                        int hora,durac;
+                        System.out.println(json);
+                        ArrayList<Informacion> prueba= new ArrayList();
+
+                        for (JsonElement js : array) {
+                            JsonObject object = js.getAsJsonObject();
+                            System.out.println();
+                            fecha = object.get("Fecha").getAsString();
+                            hora= object.get("Hora").getAsInt();
+                            titulo= object.get("Titulo").getAsString();
+                            durac=object.get("Duracion").getAsInt();
+                            descri = object.get("Descripcion").getAsString();
+                            Informacion info = new Informacion(fecha,hora,titulo,descri,durac);
+                            prueba.add(info);
+                        }
+                        //Extrae a informacion
+
+
+
+                        //prueba algoritmo!!!!!!!!!!!!
                     }else
                     {
                         Toast.makeText(getAplicationContext, "Actividad ya existe" + response, Toast.LENGTH_SHORT).show();
@@ -65,6 +100,9 @@ public class RegistrarActModel {
 
             }
         });
+    }
+    public void compararActividades(){
+
 
     }
 }

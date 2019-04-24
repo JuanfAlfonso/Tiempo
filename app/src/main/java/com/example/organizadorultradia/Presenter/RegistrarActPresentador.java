@@ -38,5 +38,9 @@ public class RegistrarActPresentador implements RegistrarActividadContract.Prese
         }else{
             return false; }
     }
+    //Registro automatico
+    public void autoRegis(String actividad, String duracion, String descripcion){
 
+
+    }
 }

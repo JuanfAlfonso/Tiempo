@@ -52,8 +52,10 @@ public class CalendarioModelo {
                 super.onSuccess(statusCode, headers, response);
                 Toast.makeText(getAplicationContext, "Correcto", Toast.LENGTH_SHORT).show();
                 try {
-                    String json = response.getString("true");
 
+                    String json = response.getString("true");//Capta la informacion de json
+
+                    //extrae la infromacion
                     JsonParser parser = new JsonParser();
                     JsonArray array = parser.parse(json).getAsJsonArray();
                     String act = "", dur = "", des = "";
@@ -69,6 +71,9 @@ public class CalendarioModelo {
                         Actividad hola = new Actividad(act, dur, des);
                         prueba.add(hola);
                     }
+                    //Extrae a informacion
+
+                    //anade informacion como un string por actividades para imprimir
                     ArrayList<String> Mensaje = new ArrayList<>();
                     for (int i=0;i<prueba.size();i++){
                         Mensaje.add(i,"Actividad:" + prueba.get(i).getActividades() +"\n" + "  Duracion:" + prueba.get(i).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(i).getDescripcion());

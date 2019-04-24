@@ -9,5 +9,6 @@ public interface RegistrarActividadContract {
         void comprobar(boolean com);
 
         boolean comprobarVacios();
+        void autoRegis(String actividad, String duracion, String descripcion);
     }
 }
