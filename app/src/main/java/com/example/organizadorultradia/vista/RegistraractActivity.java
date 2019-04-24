@@ -17,6 +17,7 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
     private EditText duracion;
     private EditText descripcion;
     private Button registrarAct;
+    private Button AutoRegis;
     private RegistrarActividadContract.Presenter presenter;
     public Activity_manual manual;
 
@@ -34,6 +35,7 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
         duracion =  findViewById(R.id.Duracion);
         descripcion =  findViewById(R.id.Descripcion);
         registrarAct = findViewById(R.id.registrarActBtn);
+        AutoRegis = findViewById(R.id.Automatico);
         setUpListener();
     }
 
@@ -53,10 +55,16 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
             }
 
         });
+        AutoRegis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Act= ingresarAct.getText().toString();
+                String dur=duracion.getText().toString();
+                String desc =descripcion.getText().toString();
+
+
+            }
+        });
     }
 
-    public void RegistroManual(View view){
-      //  Intent next = new Intent(this, Activity_manual.class);
-       // startActivity(next);
-    }
 }
