@@ -15,7 +15,9 @@ public class Activity_manual extends AppCompatActivity {
     public TextView des;
     public Button btnregistrar;
     PresentadorManual presenter;
-
+    String Actividad;
+    String Duracion;
+    String Descripcion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,22 +31,23 @@ public class Activity_manual extends AppCompatActivity {
         des = findViewById(R.id.DescripcionManual);
         btnregistrar = findViewById(R.id.RegistrarManualBtn);
         presenter = new PresentadorManual(getApplicationContext());
+        String Act = getIntent().getExtras().getString("Actividad");
+        String Dur = getIntent().getExtras().getString("Duracion");
+        String Des = getIntent().getExtras().getString("Descripcion");
+        System.out.println("este es el poder " + Act + Dur + Des);
+        Actividad=Act;
+        Duracion=Dur;
+        Descripcion=Des;
+        tit.setText("Titulo: " + Act);
+        dur.setText("Duracion: " + Dur);
+        des.setText("Descripcion: " + Des);
         setUpListener();
-
     }
-
     private void setUpListener() {
         btnregistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Act = getIntent().getExtras().getString("Actividad");
-                String Dur = getIntent().getExtras().getString("Duracion");
-                String Des = getIntent().getExtras().getString("Descripcion");
-                System.out.println("este es el poder " + Act + Dur + Des);
-                tit.setText("Titulo: " + Act);
-                dur.setText("Duracion: " + Dur);
-                des.setText("Descripcion: " + Des);
-                presenter.registrarActividad(Act,Dur,Des);
+                presenter.registrarActividad(Actividad,Duracion,Descripcion);
             }
         });
     }
