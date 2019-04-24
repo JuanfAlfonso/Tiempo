@@ -20,6 +20,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import cz.msebera.android.httpclient.Header;
@@ -36,9 +37,6 @@ public class CalendarioModelo {
         this.presentador = presenter;
     }
 
-    public char traerComilla() {
-        return '"';
-    }
 
     public void recibirFecha(Fecha fecha) {
         Gson gson = new Gson();
@@ -60,7 +58,7 @@ public class CalendarioModelo {
                     JsonArray array = parser.parse(json).getAsJsonArray();
                     String act = "", dur = "", des = "";
                     System.out.println(json);
-                    LinkedList<Actividad> prueba= new LinkedList();
+                    ArrayList<Actividad> prueba= new ArrayList();
 
                     for (JsonElement js : array) {
                         JsonObject object = js.getAsJsonObject();
@@ -71,10 +69,14 @@ public class CalendarioModelo {
                         Actividad hola = new Actividad(act, dur, des);
                         prueba.add(hola);
                     }
-                    //Actividad hola = new Actividad(act, dur, des);
-                    String mensaje = "Actividad:" + prueba.get(0).getActividades() +"\n" + "  Duracion:" + prueba.get(0).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(0).getDescripcion();
-                    System.out.println(mensaje);
-                    presentador.enviarActividad(mensaje);
+                    ArrayList<String> Mensaje = new ArrayList<>();
+                    for (int i=0;i<prueba.size();i++){
+                        Mensaje.add(i,"Actividad:" + prueba.get(i).getActividades() +"\n" + "  Duracion:" + prueba.get(i).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(i).getDescripcion());
+                        System.out.println(Mensaje.get(i));
+                    }
+                    //String mensaje = "Actividad:" + prueba.get(0).getActividades() +"\n" + "  Duracion:" + prueba.get(0).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(0).getDescripcion();
+                    //System.out.println(mensaje);
+                    presentador.enviarActividad(Mensaje);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -2,13 +2,16 @@ package com.example.organizadorultradia.Interface;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public interface CalendarContract {
     interface view{
 
     }
     interface presentador{
-     public void enviarFecha(int dia,int mes,int anio);
+      void enviarFecha(int dia,int mes,int anio);
 
-     public String getMensaje();
+     ArrayList<String> getMensaje();
     }
 }

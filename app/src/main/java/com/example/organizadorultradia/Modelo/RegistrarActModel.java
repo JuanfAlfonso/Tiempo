@@ -14,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.SQLOutput;
+
 import cz.msebera.android.httpclient.Header;
 
 public class RegistrarActModel {
@@ -29,6 +31,8 @@ public class RegistrarActModel {
     }
 
     public void RegistrarActividad(Actividad actividad) {
+        System.out.println("RE HOLA X2"
+        );
         Gson gson = new Gson();
         params = new RequestParams();
         client = new AsyncHttpClient();

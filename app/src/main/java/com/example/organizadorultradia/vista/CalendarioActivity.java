@@ -12,13 +12,15 @@ import com.example.organizadorultradia.Presenter.CalendarioPresentador;
 import com.example.organizadorultradia.R;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class CalendarioActivity extends AppCompatActivity {
 
     CalendarView calendario;
     TextView actividad;
     CalendarContract.presentador presentador;
-
+    ArrayList<String> Mensaje= new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -27,8 +29,8 @@ public class CalendarioActivity extends AppCompatActivity {
     }
     private void setUpActivity() {
 
-        calendario=(CalendarView)findViewById(R.id.calendar);
-        actividad=(TextView)findViewById(R.id.Actividades);
+        calendario=findViewById(R.id.calendar);
+        actividad=findViewById(R.id.Actividades);
         presentador= new CalendarioPresentador(getApplicationContext());
         setUpListeners();
     }
@@ -40,9 +42,17 @@ public class CalendarioActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),dayOfMonth+"/"+month+"/"+year, Toast.LENGTH_LONG).show();
                 presentador.enviarFecha(dayOfMonth,month,year);
                 //actividad.setText("hola");
-                actividad.setText(presentador.getMensaje());
+                Mensaje = presentador.getMensaje();
+                visualizarAct();
+
             }
         });
     }
-
+    private void visualizarAct() {
+        String total="";
+        for (int i =0;i<Mensaje.size()-1;i++){
+          total=Mensaje.get(i)+"\n"+Mensaje.get(i+1);
+        }
+        actividad.setText(total);
+    }
 }

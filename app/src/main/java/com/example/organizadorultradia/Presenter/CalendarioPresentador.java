@@ -9,13 +9,17 @@ import com.example.organizadorultradia.clases.Fecha;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class CalendarioPresentador implements CalendarContract.presentador {
     Context getContext;
     CalendarioModelo model;
-    String mensaje;
+    ArrayList<String> mensaje = new ArrayList<>();
     public CalendarioPresentador(Context getContext){
         this.getContext=getContext;
         model = new CalendarioModelo(this,getContext);
+
     }
 
     @Override
@@ -25,11 +29,12 @@ public class CalendarioPresentador implements CalendarContract.presentador {
        //
 
     }
-    public void enviarActividad(String mensaje){
-        this.mensaje=mensaje;
+    public void enviarActividad(ArrayList<String> mensaje){
+        this.mensaje =mensaje;
     }
 
-    public String getMensaje(){
+    public ArrayList<String> getMensaje(){
+
         return mensaje;
     }
 }
