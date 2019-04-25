@@ -73,6 +73,7 @@ public class CalendarioModelo {
                     }
                     //Extrae a informacion
 
+
                     //anade informacion como un string por actividades para imprimir
                     ArrayList<String> Mensaje = new ArrayList<>();
                     for (int i=0;i<prueba.size();i++){

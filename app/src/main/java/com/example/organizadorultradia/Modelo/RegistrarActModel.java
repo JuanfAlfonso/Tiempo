@@ -15,11 +15,9 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,13 +32,14 @@ public class RegistrarActModel {
     RequestParams params;
     AsyncHttpClient client;
 
+
     public RegistrarActModel(RegistrarActPresentador presenter, Context view) {
         this.presenter = presenter;
-        this.getAplicationContext= view;
+        this.getAplicationContext = view;
     }
 
     public void RegistrarActividad(final Actividad actividad) {
-        System.out.println("RE HOLA X2");
+
         Gson gson = new Gson();
         params = new RequestParams();
         client = new AsyncHttpClient();
@@ -56,7 +55,7 @@ public class RegistrarActModel {
                 super.onSuccess(statusCode, headers, response);
                 try {
                     int otraP = response.getInt("true");
-                    if(otraP==1){
+                    if (otraP == 1) {
                         Toast.makeText(getAplicationContext, "Actividad registrada" + response, Toast.LENGTH_SHORT).show();
                         presenter.comprobar(true);
 
@@ -67,21 +66,21 @@ public class RegistrarActModel {
                         //extrae la infromacion
                         JsonParser parser = new JsonParser();
                         JsonArray array = parser.parse(json).getAsJsonArray();
-                        String fecha = "", descri = "",titulo="";
-                        int hora,horafin,durac;
+                        String fecha = "", descri = "", titulo = "";
+                        int hora, horafin, durac;
                         System.out.println(json);
-                        ArrayList<Informacion> prueba= new ArrayList<>();
+                        ArrayList<Informacion> prueba = new ArrayList<>();
 
                         for (JsonElement js : array) {
                             JsonObject object = js.getAsJsonObject();
                             System.out.println();
                             fecha = object.get("Fecha").getAsString();
-                            hora= object.get("HoraInicio").getAsInt();
-                            horafin=object.get("HoraFin").getAsInt();
-                            titulo= object.get("Titulo").getAsString();
-                            durac=object.get("Duracion").getAsInt();
+                            hora = object.get("HoraInicio").getAsInt();
+                            horafin = object.get("HoraFin").getAsInt();
+                            titulo = object.get("Titulo").getAsString();
+                            durac = object.get("Duracion").getAsInt();
                             descri = object.get("Descripcion").getAsString();
-                            Informacion info = new Informacion(fecha,hora,horafin,titulo,descri,durac);
+                            Informacion info = new Informacion(fecha, hora, horafin, titulo, descri, durac);
                             prueba.add(info);
                         }
 
@@ -89,28 +88,29 @@ public class RegistrarActModel {
                         //algoriiiiiiiiitmooooooooooo
                         String algo = new Date().toString();
                         int horas, minutos;
-                        String[] horita=algo.split(":");
-                        minutos=Integer.parseInt(horita[1]);
-                        horas=(int)(horita[0].charAt(horita[0].length()-2));
+                        String[] horita = algo.split(":");
+                        minutos = Integer.parseInt(horita[1]);
+                        horas = (int) (horita[0].charAt(horita[0].length() - 2));
                         ArrayList<Informacion> ActividadesPorFecha = new ArrayList<>();
-                        for (int i=0; i<=prueba.size(); i++){
-                            if(prueba.get(i).fecha.equals(fecha) && prueba.get(i).horafin>horas && prueba.get(i).hora>=horas){
+                        for (int i = 0; i <= prueba.size(); i++) {
+                            if (prueba.get(i).fecha.equals(fecha) && prueba.get(i).horafin > horas && prueba.get(i).hora >= horas) {
                                 ActividadesPorFecha.add(prueba.get(i)); //actividades que pueden interferir en el registro automatico
                             }
                         }
-                        int durCliente= Integer.parseInt(actividad.getDuracion());
-                        for (int i=0; i<=ActividadesPorFecha.size(); i++) {
+
+                        int durCliente = Integer.parseInt(actividad.getDuracion());
+                        for (int i = 0; i <= ActividadesPorFecha.size(); i++) {
                             if (ActividadesPorFecha.get(i).getHora() - durCliente < horas) {
                                 //no se puede registrar la actividad
                             } else {
+                                 registroAutomatico(ActividadesPorFecha.get(i));//metodo para enviar la actividad a registrar
                                 //se puede hacer el registro pero en ese mismo instante
                                 break;
                             }
                         }
 
                         //prueba algoritmo!!!!!!!!!!!!
-                    }else
-                    {
+                    } else {
                         Toast.makeText(getAplicationContext, "Actividad ya existe" + response, Toast.LENGTH_SHORT).show();
 
                     }
@@ -128,7 +128,12 @@ public class RegistrarActModel {
         });
     }
 
-    public void compararActividades(){
+    public void registroAutomatico(Informacion informacion) {
+        Gson gson = new Gson();
+        params = new RequestParams();
+        client = new AsyncHttpClient();
+        String json = gson.toJson(informacion);
+        params.put("actividad", json);
 
 
     }

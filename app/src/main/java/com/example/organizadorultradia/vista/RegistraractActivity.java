@@ -61,7 +61,7 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
                 String Act= ingresarAct.getText().toString();
                 String dur=duracion.getText().toString();
                 String desc =descripcion.getText().toString();
-
+                presenter.registrarActividad(Act,dur,desc);
 
             }
         });
