@@ -20,7 +20,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.SQLOutput;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -43,6 +46,10 @@ public class RegistrarActModel {
         client = new AsyncHttpClient();
         String json = gson.toJson(actividad);
         params.put("actividad", json);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        String fecha = dateFormat.format(date);
+
         client.post(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -53,7 +60,6 @@ public class RegistrarActModel {
                         Toast.makeText(getAplicationContext, "Actividad registrada" + response, Toast.LENGTH_SHORT).show();
                         presenter.comprobar(true);
 
-
                         //prueba algoritmo!!!!!!!!!!!!!!!!!
 
                         String json = response.getString("true");//Capta la informacion de json
@@ -62,24 +68,35 @@ public class RegistrarActModel {
                         JsonParser parser = new JsonParser();
                         JsonArray array = parser.parse(json).getAsJsonArray();
                         String fecha = "", descri = "",titulo="";
-                        int hora,durac;
+                        int hora,horafin,durac;
                         System.out.println(json);
-                        ArrayList<Informacion> prueba= new ArrayList();
+                        ArrayList<Informacion> prueba= new ArrayList<>();
 
                         for (JsonElement js : array) {
                             JsonObject object = js.getAsJsonObject();
                             System.out.println();
                             fecha = object.get("Fecha").getAsString();
-                            hora= object.get("Hora").getAsInt();
+                            hora= object.get("HoraInicio").getAsInt();
+                            horafin=object.get("HoraFin").getAsInt();
                             titulo= object.get("Titulo").getAsString();
                             durac=object.get("Duracion").getAsInt();
                             descri = object.get("Descripcion").getAsString();
-                            Informacion info = new Informacion(fecha,hora,titulo,descri,durac);
+                            Informacion info = new Informacion(fecha,hora,horafin,titulo,descri,durac);
                             prueba.add(info);
                         }
                         //Extrae a informacion
-
-
+                        //algoriiiiiiiiitmooooooooooo
+                        String algo = new Date().toString();
+                        int horas, minutos;
+                        String[] horita=algo.split(":");
+                        minutos=Integer.parseInt(horita[1]);
+                        hora=(int)(horita[0].charAt(horita[0].length()-2));
+                        ArrayList<Informacion> ActividadesPorFecha = new ArrayList<>();
+                        for (int i=0; i<=prueba.size(); i++){
+                            if(prueba.get(i).fecha.equals(fecha) && prueba.get(i).horafin>hora && prueba.get(i).hora>=hora){
+                                ActividadesPorFecha.add(prueba.get(i)); //actividades que pueden interferir en el registro automatico
+                            }
+                        }
 
                         //prueba algoritmo!!!!!!!!!!!!
                     }else

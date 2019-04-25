@@ -5,17 +5,19 @@ public class Informacion {
     public int hora;
     public String titulo, descripcion;
     public int duracion;
+    public int horafin;
 
     public String getFecha() {
         return fecha;
     }
 
-    public Informacion(String fecha, int hora, String titulo, String descripcion, int duracion) {
+    public Informacion(String fecha, int hora, int horafin, String titulo, String descripcion, int duracion) {
         this.fecha = fecha;
         this.hora = hora;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.duracion = duracion;
+        this.horafin=horafin;
     }
 
     public void setFecha(String fecha) {
@@ -52,5 +54,13 @@ public class Informacion {
 
     public void setDuracion(int duracion) {
         this.duracion = duracion;
+    }
+
+    public int getHorafin() {
+        return horafin;
+    }
+
+    public void setHorafin(int horafin) {
+        this.horafin = horafin;
     }
 }
