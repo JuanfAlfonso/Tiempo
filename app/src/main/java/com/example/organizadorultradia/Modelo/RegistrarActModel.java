@@ -1,6 +1,7 @@
 package com.example.organizadorultradia.Modelo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.example.organizadorultradia.Presenter.RegistrarActPresentador;
@@ -15,6 +16,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,11 +29,12 @@ import cz.msebera.android.httpclient.Header;
 
 public class RegistrarActModel {
     String url = "http://ec2-3-86-105-189.compute-1.amazonaws.com:8080/Pruebaoficial/Actividades";
+    String url2="";
     private RegistrarActPresentador presenter;
     Context getAplicationContext;
     RequestParams params;
     AsyncHttpClient client;
-
+    CalendarioModelo calendarioModelo;
 
     public RegistrarActModel(RegistrarActPresentador presenter, Context view) {
         this.presenter = presenter;
@@ -47,7 +50,7 @@ public class RegistrarActModel {
         params.put("actividad", json);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date date = new Date();
-        String fecha = dateFormat.format(date);
+        final String otroN = dateFormat.format(date);
 
         client.post(url, params, new JsonHttpResponseHandler() {
             @Override
@@ -93,7 +96,7 @@ public class RegistrarActModel {
                         horas = (int) (horita[0].charAt(horita[0].length() - 2));
                         ArrayList<Informacion> ActividadesPorFecha = new ArrayList<>();
                         for (int i = 0; i <= prueba.size(); i++) {
-                            if (prueba.get(i).fecha.equals(fecha) && prueba.get(i).horafin > horas && prueba.get(i).hora >= horas) {
+                            if (prueba.get(i).fecha.equals(otroN) && prueba.get(i).horafin > horas && prueba.get(i).hora >= horas) {
                                 ActividadesPorFecha.add(prueba.get(i)); //actividades que pueden interferir en el registro automatico
                             }
                         }
@@ -103,7 +106,7 @@ public class RegistrarActModel {
                             if (ActividadesPorFecha.get(i).getHora() - durCliente < horas) {
                                 //no se puede registrar la actividad
                             } else {
-                                 registroAutomatico(ActividadesPorFecha.get(i));//metodo para enviar la actividad a registrar
+                                 registroAutomatico(actividad,otroN,horas);//metodo para enviar la actividad a registrar
                                 //se puede hacer el registro pero en ese mismo instante
                                 break;
                             }
@@ -128,13 +131,29 @@ public class RegistrarActModel {
         });
     }
 
-    public void registroAutomatico(Informacion informacion) {
+    public void registroAutomatico(Actividad actividad,String otroN,int horas) {
         Gson gson = new Gson();
+        int negrohp=Integer.parseInt(actividad.getDuracion());
+        int horafin=horas+negrohp;
+        Informacion informacion = new Informacion(otroN,horas,horafin,actividad.getActividades(),actividad.getDescripcion(),negrohp);
         params = new RequestParams();
         client = new AsyncHttpClient();
         String json = gson.toJson(informacion);
         params.put("actividad", json);
+        client.post(url2, params, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+                Toast.makeText(getAplicationContext, "Actividad registrada", Toast.LENGTH_SHORT).show();
 
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                Toast.makeText(getAplicationContext, "Negro 70 HPTA", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }
