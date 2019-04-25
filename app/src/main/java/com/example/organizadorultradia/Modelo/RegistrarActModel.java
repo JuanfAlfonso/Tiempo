@@ -90,11 +90,19 @@ public class RegistrarActModel {
                         int horas, minutos;
                         String[] horita=algo.split(":");
                         minutos=Integer.parseInt(horita[1]);
-                        hora=(int)(horita[0].charAt(horita[0].length()-2));
+                        horas=(int)(horita[0].charAt(horita[0].length()-2));
                         ArrayList<Informacion> ActividadesPorFecha = new ArrayList<>();
                         for (int i=0; i<=prueba.size(); i++){
-                            if(prueba.get(i).fecha.equals(fecha) && prueba.get(i).horafin>hora && prueba.get(i).hora>=hora){
+                            if(prueba.get(i).fecha.equals(fecha) && prueba.get(i).horafin>horas && prueba.get(i).hora>=horas){
                                 ActividadesPorFecha.add(prueba.get(i)); //actividades que pueden interferir en el registro automatico
+                            }
+                        }
+                        for (int i=0; i<=ActividadesPorFecha.size(); i++) {
+                            if (ActividadesPorFecha.get(i).getHora() - durCliente < horas) {
+                                //no se puede registrar la actividad
+                            } else {
+                                //se puede hacer el registro pero en ese mismo instante
+                                break;
                             }
                         }
 
