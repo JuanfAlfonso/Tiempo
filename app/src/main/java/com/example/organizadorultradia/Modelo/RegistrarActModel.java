@@ -39,7 +39,7 @@ public class RegistrarActModel {
         this.getAplicationContext= view;
     }
 
-    public void RegistrarActividad(Actividad actividad) {
+    public void RegistrarActividad(final Actividad actividad) {
         System.out.println("RE HOLA X2");
         Gson gson = new Gson();
         params = new RequestParams();
@@ -84,6 +84,7 @@ public class RegistrarActModel {
                             Informacion info = new Informacion(fecha,hora,horafin,titulo,descri,durac);
                             prueba.add(info);
                         }
+
                         //Extrae a informacion
                         //algoriiiiiiiiitmooooooooooo
                         String algo = new Date().toString();
@@ -97,6 +98,7 @@ public class RegistrarActModel {
                                 ActividadesPorFecha.add(prueba.get(i)); //actividades que pueden interferir en el registro automatico
                             }
                         }
+                        int durCliente= Integer.parseInt(actividad.getDuracion());
                         for (int i=0; i<=ActividadesPorFecha.size(); i++) {
                             if (ActividadesPorFecha.get(i).getHora() - durCliente < horas) {
                                 //no se puede registrar la actividad
@@ -122,10 +124,10 @@ public class RegistrarActModel {
                 super.onFailure(statusCode, headers, responseString, throwable);
                 presenter.comprobar(false);
                 Toast.makeText(getAplicationContext, "No hay respuesta del servidor" + throwable, Toast.LENGTH_SHORT).show();
-
             }
         });
     }
+
     public void compararActividades(){
 
 
