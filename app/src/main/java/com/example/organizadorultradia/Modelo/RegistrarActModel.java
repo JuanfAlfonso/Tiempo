@@ -1,7 +1,6 @@
 package com.example.organizadorultradia.Modelo;
 
 import android.content.Context;
-import android.content.Intent;
 import android.widget.Toast;
 
 import com.example.organizadorultradia.Presenter.RegistrarActPresentador;
@@ -29,7 +28,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class RegistrarActModel {
     String url = "http://ec2-3-86-105-189.compute-1.amazonaws.com:8080/Pruebaoficial/Actividades";
-    String url2="";
+    String url2 = "";
     private RegistrarActPresentador presenter;
     Context getAplicationContext;
     RequestParams params;
@@ -106,7 +105,7 @@ public class RegistrarActModel {
                             if (ActividadesPorFecha.get(i).getHora() - durCliente < horas) {
                                 //no se puede registrar la actividad
                             } else {
-                                 registroAutomatico(actividad,otroN,horas);//metodo para enviar la actividad a registrar
+                                registroAutomatico(actividad, otroN, horas);//metodo para enviar la actividad a registrar
                                 //se puede hacer el registro pero en ese mismo instante
                                 break;
                             }
@@ -131,16 +130,16 @@ public class RegistrarActModel {
         });
     }
 
-    public void registroAutomatico(Actividad actividad,String otroN,int horas) {
+    public void registroAutomatico(Actividad actividad, String otroN, int horas) {
         Gson gson = new Gson();
-        int negrohp=Integer.parseInt(actividad.getDuracion());
-        int horafin=horas+negrohp;
-        Informacion informacion = new Informacion(otroN,horas,horafin,actividad.getActividades(),actividad.getDescripcion(),negrohp);
+        int negrohp = Integer.parseInt(actividad.getDuracion());
+        int horafin = horas + negrohp;
+        Informacion informacion = new Informacion(otroN, horas, horafin, actividad.getActividades(), actividad.getDescripcion(), negrohp);
         params = new RequestParams();
         client = new AsyncHttpClient();
         String json = gson.toJson(informacion);
         params.put("actividad", json);
-        client.post(url2, params, new JsonHttpResponseHandler(){
+        client.post(url2, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);

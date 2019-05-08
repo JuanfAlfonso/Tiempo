@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.example.organizadorultradia.Interface.CalendarContract;
 import com.example.organizadorultradia.Modelo.CalendarioModelo;
 import com.example.organizadorultradia.clases.Fecha;
+import com.example.organizadorultradia.clases.Informacion;
 
 import org.w3c.dom.Text;
 

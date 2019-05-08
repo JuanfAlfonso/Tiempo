@@ -15,4 +15,8 @@
     <string name="Ingresar">Ingresar</string>
     <string name="formato_fecha">dd/mm/yyyy</string>
     <string name="formato_hora">hh:mm</string>
+    <string name="title_activity_add_new_photo">AddNewPhoto</string>
+    <string name="photo_source">foto</string>
+    <string name="camera">Camara</string>
+    <string name="gallery">Galeria</string>
 </resources>

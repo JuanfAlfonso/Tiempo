@@ -2,6 +2,8 @@ package com.example.organizadorultradia.Interface;
 
 import android.content.Context;
 
+import com.example.organizadorultradia.clases.Informacion;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 

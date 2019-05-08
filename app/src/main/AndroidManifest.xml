@@ -6,15 +6,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:debuggable="true"
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
         android:label="self Plan"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
-        <activity android:name=".vista.Activity_UsuarioRegistrar"></activity>
+        <activity android:name=".vista.AddNewPhoto"></activity>
+        <activity android:name=".vista.Activity_UsuarioRegistrar" />
         <activity android:name=".vista.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +28,7 @@
         <activity
             android:name=".vista.CalendarioActivity"
             tools:ignore="DuplicateActivity" />
-        <activity android:name=".vista.Activity_manual"> </activity>
+        <activity android:name=".vista.Activity_manual" />
     </application>
+
 </manifest>

@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.example.organizadorultradia.Interface.CalendarContract;
 import com.example.organizadorultradia.Presenter.CalendarioPresentador;
 import com.example.organizadorultradia.R;
+import com.example.organizadorultradia.clases.Actividad;
+import com.example.organizadorultradia.clases.Informacion;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -43,16 +45,35 @@ public class CalendarioActivity extends AppCompatActivity {
                 presentador.enviarFecha(dayOfMonth,month,year);
                 //actividad.setText("hola");
                 Mensaje = presentador.getMensaje();
-                visualizarAct();
+                actividad.setText("");
+                visualizarAct(year, month, dayOfMonth);
 
             }
         });
     }
-    private void visualizarAct() {
+    private void visualizarAct(int year, int month, int dayOfMonth) {
+
         String total="";
         for (int i =0;i<Mensaje.size()-1;i++){
           total=Mensaje.get(i)+"\n"+Mensaje.get(i+1);
         }
         actividad.setText(total);
+        /*
+        ArrayList<Informacion> Mensaje2= new ArrayList<>();
+        String fecha= year +"/"+month+"/"+dayOfMonth;
+        for(int i =0;i<Mensaje.size();i++)
+        {
+            if(Mensaje.get(i).fecha.equals(fecha))
+            {
+                Mensaje2.add(Mensaje.get(i));
+            }
+        }
+        String negrosetHp="";
+        for(int i =0;i<Mensaje2.size();i++)
+        {
+            negrosetHp+="Titulo:" + Mensaje2.get(i).titulo +"\n" + "  Duracion:" + Mensaje2.get(i).getDuracion() +"\n"+ "  Descripcion:" + Mensaje2.get(i).getDescripcion()+"Hora inicio: "+
+                    "\n"+Mensaje2.get(i).hora+ "Hora fin: "+ "\n"+Mensaje2.get(i).horafin+"\n"+"\n";
+        }
+        actividad.setText(negrosetHp);*/
     }
 }
