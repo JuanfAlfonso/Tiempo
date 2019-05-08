@@ -19,8 +19,9 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
     private EditText descripcion;
     private Button registrarAct;
     private Button AutoRegis;
+
     private RegistrarActividadContract.Presenter presenter;
-    private ImageButton imageButton;
+
     public Activity_manual manual;
 
     @Override
@@ -67,13 +68,7 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
 
             }
         });
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent next = new Intent(RegistraractActivity.this,AddNewPhoto.class);
-                startActivity(next);
-            }
-        });
+
 
     }
 
