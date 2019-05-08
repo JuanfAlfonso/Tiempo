@@ -1,6 +1,7 @@
 package com.example.organizadorultradia.Modelo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.widget.Toast;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 import com.example.organizadorultradia.Presenter.CalendarioPresentador;
 import com.example.organizadorultradia.clases.Actividad;
 import com.example.organizadorultradia.clases.Fecha;
+import com.example.organizadorultradia.clases.Informacion;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -58,8 +60,10 @@ public class CalendarioModelo {
                     //extrae la infromacion
                     JsonParser parser = new JsonParser();
                     JsonArray array = parser.parse(json).getAsJsonArray();
-                    String act = "", dur = "", des = "";
+                    String fecha = "", descri = "", titulo = "";
+                    int hora, horafin, durac;
                     System.out.println(json);
+                    /*
                     ArrayList<Actividad> prueba= new ArrayList();
 
                     for (JsonElement js : array) {
@@ -70,14 +74,28 @@ public class CalendarioModelo {
                         des = object.get("Descripcion").getAsString();
                         Actividad hola = new Actividad(act, dur, des);
                         prueba.add(hola);
-                    }
+                    }*/
                     //Extrae a informacion
+                    ArrayList<Informacion> prueba = new ArrayList<>();
 
+                    for (JsonElement js : array) {
+                        JsonObject object = js.getAsJsonObject();
+                        System.out.println();
+                        fecha = object.get("Fecha").getAsString();
+                        hora = object.get("HoraInicio").getAsInt();
+                        horafin = object.get("HoraFin").getAsInt();
+                        titulo = object.get("Titulo").getAsString();
+                        durac = object.get("Duracion").getAsInt();
+                        descri = object.get("Descripcion").getAsString();
+                        Informacion info = new Informacion(fecha, hora, horafin, titulo, descri, durac);
+                        prueba.add(info);
+                    }
 
                     //anade informacion como un string por actividades para imprimir
                     ArrayList<String> Mensaje = new ArrayList<>();
                     for (int i=0;i<prueba.size();i++){
-                        Mensaje.add(i,"Actividad:" + prueba.get(i).getActividades() +"\n" + "  Duracion:" + prueba.get(i).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(i).getDescripcion());
+                        Mensaje.add(i,"Actividad:" + prueba.get(i).titulo +"\n" + "  Duracion:" + prueba.get(i).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(i).getDescripcion()+"Hora inicio: "+
+                                "\n"+prueba.get(i).hora+ "Hora fin: "+ "\n"+prueba.get(i).horafin );
                         System.out.println(Mensaje.get(i));
                     }
                     //String mensaje = "Actividad:" + prueba.get(0).getActividades() +"\n" + "  Duracion:" + prueba.get(0).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(0).getDescripcion();
@@ -86,17 +104,7 @@ public class CalendarioModelo {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-               /* try {
-                    ArrayList<Actividad> act = new ArrayList();
-                   for (int i=0;i<=response.length();i++)
-                    {
-                        JSONObject ob = response.getJSONObject(i);//obtiene cada actividad por index
-                        Actividad actividad = gson.fromJson(String.valueOf(ob),Actividad.class);//lo convierte en un objeto
-                        act.add(actividad);//lo agrega en un arreglo
-                        System.out.println(act.get(i).getActividades());}
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
+
             }
 
             @Override
@@ -107,4 +115,5 @@ public class CalendarioModelo {
         });
 
     }
+
 }
