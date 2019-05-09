@@ -1,10 +1,12 @@
 package com.example.organizadorultradia.vista;
 
 
+import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -65,6 +67,7 @@ public class AddNewPhoto extends AppCompatActivity{
     private void setImageBitmap(Bitmap bitmap){
         photoViewer.setImageBitmap(bitmap);
     }
+
     private AlertDialog getPhotoDialog() {
         if (_photoDialog == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -100,6 +103,7 @@ public class AddNewPhoto extends AppCompatActivity{
                     startActivityForResult(galleryIntent, ACTIVITY_SELECT_IMAGE);
                 }
 
+
             });
             _photoDialog = builder.create();
 
@@ -109,11 +113,15 @@ public class AddNewPhoto extends AppCompatActivity{
     }
     private void setPhotoButton(){
         photoButton.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             public void onClick(View v){
                 if(!getPhotoDialog().isShowing() && !isFinishing())
                     getPhotoDialog().show();
+
             }
         });
     }
+
+
 
 }
