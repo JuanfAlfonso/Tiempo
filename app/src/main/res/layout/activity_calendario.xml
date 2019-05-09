@@ -22,6 +22,8 @@
             <CalendarView
                 android:id="@+id/calendar"
                 android:layout_width="match_parent"
+                android:weekNumberColor="#fff"
+                android:background="@android:color/transparent"
                 android:layout_height="307dp"></CalendarView>
 
             <TextView
