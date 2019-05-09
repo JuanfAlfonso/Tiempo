@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.organizadorultradia.Interface.RegistrarActividadContract;
@@ -28,8 +30,11 @@ public class RegistraractActivity extends AppCompatActivity implements Registrar
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registraract);
-
         setUpActivity();
+        Spinner Sp = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(RegistraractActivity.this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Categoria));
+        adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Sp.setAdapter(adaptador);
     }
 
     private void setUpActivity() {

@@ -8,66 +8,34 @@
 
         <Button
             android:id="@+id/btnR"
-            android:layout_width="191dp"
-            android:layout_height="46dp"
+            android:layout_width="197dp"
+            android:layout_height="207dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/obt"
+            android:background="@drawable/actividades"
             android:onClick="nextReg"
-            android:text="@string/Regis"
             android:textColor="#ADA7A6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="191dp"
-            android:layout_height="133dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnR"
-            app:srcCompat="@drawable/actividadesicono" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="177dp"
-            android:layout_height="46dp"
-            android:textColor="#ADA7A6"
+            android:layout_width="199dp"
+            android:layout_height="191dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/obt"
+            android:background="@drawable/libro"
             android:onClick="nexthor"
-            android:text="@string/vis"
+            android:textColor="#ADA7A6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="154dp"
-            android:layout_height="153dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/actividades2" />
-
+            app:layout_constraintTop_toBottomOf="@+id/btnR" />
 
 </android.support.constraint.ConstraintLayout>

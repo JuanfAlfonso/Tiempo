@@ -19,4 +19,9 @@
     <string name="photo_source">foto</string>
     <string name="camera">Camara</string>
     <string name="gallery">Galeria</string>
+    <string-array name="Categoria">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>
