@@ -49,7 +49,6 @@ public class Login_model extends AppCompatActivity {
                         Intent next = new Intent(getAplicationContext, Activity_duo.class);
                         next.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         getAplicationContext.startActivity(next);
-                        Toast.makeText(getAplicationContext, "Bienvenido", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getAplicationContext, "Usuario no registrado", Toast.LENGTH_SHORT).show();
                     }

@@ -57,7 +57,7 @@ public class CalendarioModelo {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 System.out.println(response);
                 super.onSuccess(statusCode, headers, response);
-                Toast.makeText(getAplicationContext, "Correcto", Toast.LENGTH_SHORT).show();
+
                 try {
 
                     String json = response.getString("true");//Capta la informacion de json
@@ -116,7 +116,6 @@ public class CalendarioModelo {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
-                Toast.makeText(getAplicationContext, " no funciono " + throwable, Toast.LENGTH_SHORT).show();
             }
         });
 

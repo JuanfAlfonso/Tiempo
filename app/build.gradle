@@ -35,4 +35,5 @@ dependencies {
     implementation('de.keyboardsurfer.android.widget:crouton:1.8.5@aar')
     implementation('com.loopj.android:android-async-http:1.4.9')
     implementation('com.google.code.gson:gson:2.8.2')
+    implementation('com.github.sundeepk:compact-calendar-view:3.0.0')
 }

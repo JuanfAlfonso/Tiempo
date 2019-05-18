@@ -12,17 +12,20 @@ import com.example.organizadorultradia.Presenter.CalendarioPresentador;
 import com.example.organizadorultradia.R;
 import com.example.organizadorultradia.clases.Actividad;
 import com.example.organizadorultradia.clases.Informacion;
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 
 public class CalendarioActivity extends AppCompatActivity {
 
-    CalendarView calendario;
     TextView actividad;
     CalendarContract.presentador presentador;
     ArrayList<String> Mensaje= new ArrayList<>();
+    CompactCalendarView Calendario;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -30,23 +33,23 @@ public class CalendarioActivity extends AppCompatActivity {
         setUpActivity();
     }
     private void setUpActivity() {
-
-        calendario=findViewById(R.id.calendar);
+        Calendario = findViewById(R.id.calendar);
+        Calendario.setUseThreeLetterAbbreviation(true);
+        Calendario.setFirstDayOfWeek(Calendar.SUNDAY);
         actividad=findViewById(R.id.Actividades);
         presentador= new CalendarioPresentador(getApplicationContext());
         setUpListeners();
     }
 
     private void setUpListeners() {
-        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
+        Calendario.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                Toast.makeText(getApplicationContext(),dayOfMonth+"/"+month+"/"+year, Toast.LENGTH_LONG).show();
-                presentador.enviarFecha(dayOfMonth,month,year);
-                //actividad.setText("hola");
-                Mensaje = presentador.getMensaje();
-                actividad.setText("");
-                visualizarAct(year, month, dayOfMonth);
+            public void onDayClick(Date dateClicked) {
+
+            }
+
+            @Override
+            public void onMonthScroll(Date firstDayOfNewMonth) {
 
             }
         });
@@ -58,22 +61,5 @@ public class CalendarioActivity extends AppCompatActivity {
           total=Mensaje.get(i)+"\n"+Mensaje.get(i+1);
         }
         actividad.setText(total);
-        /*
-        ArrayList<Informacion> Mensaje2= new ArrayList<>();
-        String fecha= year +"/"+month+"/"+dayOfMonth;
-        for(int i =0;i<Mensaje.size();i++)
-        {
-            if(Mensaje.get(i).fecha.equals(fecha))
-            {
-                Mensaje2.add(Mensaje.get(i));
-            }
-        }
-        String negrosetHp="";
-        for(int i =0;i<Mensaje2.size();i++)
-        {
-            negrosetHp+="Titulo:" + Mensaje2.get(i).titulo +"\n" + "  Duracion:" + Mensaje2.get(i).getDuracion() +"\n"+ "  Descripcion:" + Mensaje2.get(i).getDescripcion()+"Hora inicio: "+
-                    "\n"+Mensaje2.get(i).hora+ "Hora fin: "+ "\n"+Mensaje2.get(i).horafin+"\n"+"\n";
-        }
-        actividad.setText(negrosetHp);*/
     }
 }

@@ -10,29 +10,27 @@
     android:background="@drawable/gradient"
     tools:context=".vista.CalendarioActivity">
 
-    <ScrollView
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendar"
+        android:layout_width="fill_parent"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_height="250dp"
+        app:compactCalendarTargetHeight="250dp"
+        app:compactCalendarTextSize="12sp"
+        app:compactCalendarBackgroundColor="#ffe95451"
+        app:compactCalendarTextColor="#fff"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+        app:compactCalendarMultiEventIndicatorColor="#fff"
+        />
+
+    <TextView
+        android:id="@+id/Actividades"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <CalendarView
-                android:id="@+id/calendar"
-                android:layout_width="match_parent"
-                android:weekNumberColor="#fff"
-                android:background="@android:color/transparent"
-                android:layout_height="307dp"></CalendarView>
-
-            <TextView
-                android:id="@+id/Actividades"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Actividades registradas" />
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:text="Actividades registradas" />
 
 </LinearLayout>
 
