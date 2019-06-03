@@ -20,7 +20,7 @@ public class Registrar_model {
     Context getAplicationContext;
     AsyncHttpClient client;
     RequestParams params;
-    String url = "http://ec2-3-86-105-189.compute-1.amazonaws.com:8080/Pruebaoficial/Registrar";
+    String url = "http://192.168.0.25:10567/Pruebaoficial/Registrar";
     private RegistrarPresentador presenter;
     private String email;
     private String pass;
@@ -43,6 +43,7 @@ public class Registrar_model {
                 next.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//
                 getAplicationContext.startActivity(next);
             }
+
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);

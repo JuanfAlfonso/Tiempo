@@ -1,18 +1,12 @@
 package com.example.organizadorultradia.Modelo;
 
 import android.content.Context;
-import android.content.Intent;
-import android.nfc.Tag;
-import android.nfc.TagLostException;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.organizadorultradia.Presenter.CalendarioPresentador;
 import com.example.organizadorultradia.clases.Actividad;
 import com.example.organizadorultradia.clases.Fecha;
-import com.example.organizadorultradia.clases.Informacion;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -22,13 +16,10 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -43,6 +34,7 @@ public class CalendarioModelo {
         this.getAplicationContext = context;
         this.presentador = presenter;
     }
+
     public void recibirFecha(Fecha fecha) {
         Gson gson = new Gson();
         params = new RequestParams();
@@ -67,9 +59,9 @@ public class CalendarioModelo {
                     JsonArray array = parser.parse(json).getAsJsonArray();
                     String fecha = "", descri = "", titulo = "";
                     int hora, horafin, durac;
-                    System.out.println(json+"hello");
-                    String act="",dur="",des="";
-                    ArrayList<Actividad> prueba= new ArrayList();
+                    System.out.println(json + "hello");
+                    String act = "", dur = "", des = "";
+                    ArrayList<Actividad> prueba = new ArrayList();
 
                     for (JsonElement js : array) {
                         JsonObject object = js.getAsJsonObject();
@@ -100,8 +92,8 @@ public class CalendarioModelo {
 
                     //anade informacion como un string por actividades para imprimir
                     ArrayList<String> Mensaje = new ArrayList<>();
-                    for (int i=0;i<prueba.size();i++){
-                        Mensaje.add(i,"Titulo:" + prueba.get(i).getActividades() +"\n" + "  Duracion:" + prueba.get(i).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(i).getDescripcion());
+                    for (int i = 0; i < prueba.size(); i++) {
+                        Mensaje.add(i, "Titulo:" + prueba.get(i).getActividades() + "\n" + "  Duracion:" + prueba.get(i).getDuracion() + "\n" + "  Descripcion:" + prueba.get(i).getDescripcion());
                         System.out.println(Mensaje.get(i));
                     }
                     //String mensaje = "Actividad:" + prueba.get(0).getActividades() +"\n" + "  Duracion:" + prueba.get(0).getDuracion() +"\n"+ "  Descripcion:" + prueba.get(0).getDescripcion();
