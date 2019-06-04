@@ -1,5 +1,6 @@
 package com.example.organizadorultradia.vista;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.CalendarView;
@@ -13,6 +14,7 @@ import com.example.organizadorultradia.R;
 import com.example.organizadorultradia.clases.Actividad;
 import com.example.organizadorultradia.clases.Informacion;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
@@ -37,6 +39,7 @@ public class CalendarioActivity extends AppCompatActivity {
         setUpActivity();
         Calendar c = Calendar.getInstance();
         titulo.setText(busquedaMes(c.get(Calendar.MONTH))+"-"+c.get(Calendar.YEAR));
+        Calendario.addEvent(new Event(Color.GREEN, 1559638800L));
     }
     private void setUpActivity() {
         Calendario = findViewById(R.id.calendar);
