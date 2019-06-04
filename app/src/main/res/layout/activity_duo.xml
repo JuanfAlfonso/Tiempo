@@ -31,7 +31,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/libro"
+            android:background="@drawable/vea"
             android:onClick="nexthor"
             android:textColor="#ADA7A6"
             app:layout_constraintEnd_toEndOf="parent"
