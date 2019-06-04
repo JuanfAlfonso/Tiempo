@@ -3,25 +3,18 @@ package com.example.organizadorultradia.vista;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.organizadorultradia.Interface.CalendarContract;
 import com.example.organizadorultradia.Presenter.CalendarioPresentador;
 import com.example.organizadorultradia.R;
-import com.example.organizadorultradia.clases.Actividad;
-import com.example.organizadorultradia.clases.Informacion;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
-import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.Locale;
 
 public class CalendarioActivity extends AppCompatActivity {
@@ -30,27 +23,30 @@ public class CalendarioActivity extends AppCompatActivity {
     CalendarContract.presentador presentador;
     CompactCalendarView Calendario;
     TextView titulo;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MM-yyyy",Locale.getDefault());
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM-yyyy", Locale.getDefault());
+
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendario);
-        titulo= (TextView)findViewById(R.id.titulo);
+        titulo = (TextView) findViewById(R.id.titulo);
         setUpActivity();
         Calendar c = Calendar.getInstance();
-        titulo.setText(busquedaMes(c.get(Calendar.MONTH))+"-"+c.get(Calendar.YEAR));
+        titulo.setText(busquedaMes(c.get(Calendar.MONTH)) + "-" + c.get(Calendar.YEAR));
         Calendario.addEvent(new Event(Color.GREEN, 1559638800L));
     }
+
     private void setUpActivity() {
         Calendario = findViewById(R.id.calendar);
         Calendario.setUseThreeLetterAbbreviation(true);
         Calendario.setFirstDayOfWeek(Calendar.SUNDAY);
-        actividad=findViewById(R.id.Actividades);
-        presentador= new CalendarioPresentador(getApplicationContext());
+        actividad = findViewById(R.id.Actividades);
+        presentador = new CalendarioPresentador(getApplicationContext());
+        Event ev1 = new Event(Color.GREEN, 1433701251000L, "Some extra data that I want to store.");
         setUpListeners();
     }
 
-    public String busquedaMes(int mes){
+    public String busquedaMes(int mes) {
         ArrayList<String> meses = new ArrayList<>();
         meses.add("Enero");
         meses.add("Febrero");
@@ -78,11 +74,9 @@ public class CalendarioActivity extends AppCompatActivity {
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 String[] noEntiendo = dateFormat.format(firstDayOfNewMonth).split("-");
-                titulo.setText(busquedaMes(Integer.parseInt(noEntiendo[0])-1)+"-"+Integer.parseInt(noEntiendo[1]));
+                titulo.setText(busquedaMes(Integer.parseInt(noEntiendo[0]) - 1) + "-" + Integer.parseInt(noEntiendo[1]));
             }
         });
     }
-    private void visualizarAct(int year, int month, int dayOfMonth) {
 
-    }
 }
